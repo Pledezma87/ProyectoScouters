@@ -16,4 +16,4 @@ const PMetricsSchema = new Schema(
     {collection: 'player-metrics'}
 )
 
-export default mongoose.model('PMetricsModel', PMetricsSchema, 'player-metrics' )
+export default mongoose.model('PMetricsModel', PMetricsSchema )

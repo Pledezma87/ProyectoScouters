@@ -1,5 +1,4 @@
-import InformModel from '../models/PMetricsModel.js';
-
+import PMetricModel from "../models/PMetricsModel.js";
 // Definir métodos para el CRUD 
 
 // Mostrar TODOS las métricas
@@ -73,3 +72,13 @@ export const deleteMetric = async (req, res) => {
     }
     
 }
+
+
+
+
+
+
+
+
+
+

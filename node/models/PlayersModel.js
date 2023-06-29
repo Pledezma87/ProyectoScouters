@@ -1,19 +1,19 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const CardSchema = new Schema(
+const PlayerSchema = new Schema(
     {
-        Nombre: {type:String},
-        Apellidos:{type:String},
-        Estatura: {type:Number},
-        Edad: {type:Number},
-        Nacionalidad: {type: String},
-        Posición: {type: String},
-        Rating: {type:Number, default:5}               
-        },
+        Nombre: { type: String },
+        Apellidos: { type: String },
+        Estatura: { type: Number },
+        Edad: { type: Number },
+        Nacionalidad: { type: String },
+        Posición: { type: String },
+        Rating: { type: Number, default: 5 },
+    },
 
-    {collection: 'players'}
+    { collection: 'players' }
 )
 
-export default mongoose.model('PlayersModel', CardSchema )
+export default mongoose.model('PlayersModel', PlayerSchema)
 

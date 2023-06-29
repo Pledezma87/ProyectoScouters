@@ -4,7 +4,7 @@ import cors from 'cors';
 import db from './database/db.js';
 // importamos nuestro enrutador
 import PlayerRoutes from './routes/PlayerRoutes.js';
-import informRoutes from './routes/routes.js';
+import InformRoutes from './routes/InformRoutes.js';
 import UserRoutes from './routes/UserRoutes.js';
 import PMetricRoutes from './routes/PMetricsRoutes.js';
 
@@ -14,7 +14,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use('/informs', informRoutes)
+app.use('/informs', InformRoutes)
 app.use('/players', PlayerRoutes)
 app.use('/users', UserRoutes)
 app.use('/player-metrics', PMetricRoutes)

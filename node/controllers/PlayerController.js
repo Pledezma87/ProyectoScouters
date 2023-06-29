@@ -44,8 +44,8 @@ export const getPlayer = async (req, res) => {
     res.json({ message: error.message })
   }
 }
-// Crear una ficha
 
+// Crear una ficha
 export const createPlayer = async (req, res) => {
   try {
     await PlayersModel.create(req.body)
@@ -74,6 +74,7 @@ export const updatePlayer = async (req, res) => {
   }
 
 }
+
 // Eliminar una ficha
 export const deletePlayer = async (req, res) => {
   try {

@@ -12,20 +12,32 @@ export const getAllInforms = async (req, res) => {
   }
 }
 
-// Mostrar UN Informe
-
+// Mostrar UN Informe individual y/o informe de jugadores
 export const getInform = async (req, res) => {
   try {
-    const id = req.params.id
-    await InformModel.findById({ _id: id }).then((inform) => {
-      res.status(200).json(inform)
-    })
+    const id = req.params.id;
+    const inform = await InformModel.findById({_id: id });
+    const informPlayer = await InformModel.find({ PlayerId: id });
+    
+    if (inform) {
+      res.json({
+        informe: inform
+      });
+    } else if (informPlayer.length > 0) {
+      res.json({
+        informesPlayer: informPlayer
+      });
+    } else {
+      res.json({
+        message: 'No se encontraron informes'
+      });
+    }
   } catch (error) {
-    res.json({ message: error.message })
+    res.json({ message: error.message });
   }
-}
-// Crear un Informe
+};
 
+// Crear un Informe
 export const createInform = async (req, res) => {
   try {
     await InformModel.create(req.body)

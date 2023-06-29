@@ -1,19 +1,9 @@
 import InformModel from '../models/InformModel.js';
 import PlayersModel from '../models/PlayersModel.js';
 
-
 // Definir métodos para el CRUD 
 
 // Mostrar TODAS las fichas
-// export const getAllPlayers = async (req, res) => {
-//   try {
-//     const players = await PlayersModel.find()
-//     res.status(200).json(players)
-//   } catch (error) {
-//     res.json({ message: error.message })
-//   }
-
-// }
 export const getAllPlayers = async (req, res) => {
   try {
     const players = await PlayersModel.find();
@@ -33,6 +23,7 @@ export const getAllPlayers = async (req, res) => {
     res.json({ message: error.message });
   }
 };
+
 // Mostrar UNA ficha
 export const getPlayer = async (req, res) => {
   try {

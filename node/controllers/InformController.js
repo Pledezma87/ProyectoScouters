@@ -12,13 +12,14 @@ export const getAllInforms = async (req, res) => {
   }
 }
 
-// Mostrar UN Informe individual y/o informe de jugadores
+
+// Mostrar un Informe concreto o informes asociados a ID de jugador
 export const getInform = async (req, res) => {
   try {
     const id = req.params.id;
-    const inform = await InformModel.findById({_id: id });
+    const inform = await InformModel.findById({ _id: id });
     const informPlayer = await InformModel.find({ PlayerId: id });
-    
+
     if (inform) {
       res.json({
         informe: inform
@@ -46,10 +47,9 @@ export const createInform = async (req, res) => {
     })
   } catch (error) {
     res.json({ message: error.message })
-
   }
-
 }
+
 
 // Actualizar un Informe
 export const updateInform = async (req, res) => {

@@ -3,15 +3,16 @@ const Schema = mongoose.Schema;
 
 const informSchema = new Schema(
   {
-    PlayerId: { type: Schema.Types.ObjectId, ref: 'PlayersModel',required: true },
+    PlayerId: { type: Schema.Types.ObjectId, ref: 'PlayersModel', required: true },
     habilidades: [
       {
-        Ofensiva: { type: Number,required: true },
-        Tecnica: { type: Number,required: true },
-        Movimiento: { type: Number,required: true },
-        Potencia: { type: Number,required: true },
-        Mentalidad: { type: Number,required: true },
-        Defensa: { type: Number,required: true }
+        Ofensiva: { type: Number, required: true },
+        Tecnica: { type: Number, required: true },
+        Movimiento: { type: Number, required: true },
+        Potencia: { type: Number, required: true },
+        Mentalidad: { type: Number, required: true },
+        Defensa: { type: Number, required: true },
+        Texto: { type: String, required: true }
       }
     ],
     MediaInforme: { type: Number }

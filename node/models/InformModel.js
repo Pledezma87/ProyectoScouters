@@ -15,7 +15,8 @@ const informSchema = new Schema(
         Texto: { type: String, required: true }
       }
     ],
-    MediaInforme: { type: Number }
+    MediaInforme: { type: Number },
+    Created_At: {type: Date, default: Date.now}
   },
   { collection: 'informs' }
 );

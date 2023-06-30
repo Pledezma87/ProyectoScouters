@@ -1,65 +1,93 @@
-import PMetricModel from "../models/PMetricsModel.js";
-// Definir métodos para el CRUD 
+import InformModel from '../models/InformModel.js';
+import PmetricsModel from '../models/PmetricsModel.js';
 
-// Mostrar TODOS las métricas
-export const getAllMetrics = async (req, res) => {
-    try {
-        const metric = await PMetricModel.find()
-        res.status(200).json(metric)
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
+// Calcular la media de habilidades y la MediaGlobal y almacenarlas en la colección "player-metrics"
+export const calculatePlayerMetrics = async (req, res) => {
+  try {
+    const informs = await InformModel.find({}); // Obtener todos los informes
+    const playerMetrics = {};
+    let totalMediaInforme = 0; // Variable para almacenar la suma de todas las MediaInforme
 
-// Mostrar UNA métrica
-export const getMetric = async (req, res) => {
-    try {
-        const id = req.params.id
-        await PMetricModel.findById({ _id: id }).then((metric) => {
-            res.status(200).json(metric)
-        })
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
-// Crear una métrica
-export const createMetric = async (req, res) => {
-    try {
-        await PMetricModel.create(req.body)
-        res.status(200).json({
-            "message": "Métrica creada correctamente"
-        })
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
+    // Calcular la media de habilidades para cada jugador y la suma de todas las MediaInforme
+    informs.forEach((inform) => {
+      const playerId = inform.PlayerId.toString();
+      const habilidades = inform.habilidades[0];
 
-// Actualizar una métrica
-export const updateMetric = async (req, res) => {
-    try {
-        const id = req.params.id
-        await PMetricModel.updateOne({ _id: id }, req.body).then(res => {
-            console.log(res)
-        })
-        res.status(200).json({
-            "message": "Métrica actualizada correctamente"
-        })
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
+      if (!playerMetrics[playerId]) {
+        playerMetrics[playerId] = {
+          Ofensiva: [],
+          Tecnica: [],
+          Movimiento: [],
+          Potencia: [],
+          Mentalidad: [],
+          Defensa: [],
+        };
+      }
 
-// Eliminar una métrica
-export const deleteMetric = async (req, res) => {
-    try {
-        const id = req.params.id
-        await PMetricModel.deleteOne({ _id: id }).then(res => {
-            console.log(res)
-        })
-        res.status(200).json({
-            "message": "Métrica eliminada correctamente"
-        })
-    } catch (error) {
-        res.json({ message: error.message })
+      playerMetrics[playerId].Ofensiva.push(habilidades.Ofensiva); 
+      playerMetrics[playerId].Tecnica.push(habilidades.Tecnica);
+      playerMetrics[playerId].Movimiento.push(habilidades.Movimiento);
+      playerMetrics[playerId].Potencia.push(habilidades.Potencia);
+      playerMetrics[playerId].Mentalidad.push(habilidades.Mentalidad);
+      playerMetrics[playerId].Defensa.push(habilidades.Defensa);
+
+      totalMediaInforme += inform.MediaInforme;
+    });
+
+    // Calcular la media de habilidades para cada jugador
+    for (let playerId in playerMetrics) {
+      const playerMetric = playerMetrics[playerId];
+
+      const mediaOfensiva = calculateAverage(playerMetric.Ofensiva);
+      const mediaTecnica = calculateAverage(playerMetric.Tecnica);
+      const mediaMovimiento = calculateAverage(playerMetric.Movimiento);
+      const mediaPotencia = calculateAverage(playerMetric.Potencia);
+      const mediaMentalidad = calculateAverage(playerMetric.Mentalidad);
+      const mediaDefensa = calculateAverage(playerMetric.Defensa);
+      const existingPlayerMetric = await PmetricsModel.findOne({ PlayerId: playerId });
+
+      if (existingPlayerMetric) {
+        // Actualizar el documento existente con los nuevos valores
+        existingPlayerMetric.Ofensiva = mediaOfensiva;
+        existingPlayerMetric.Tecnica = mediaTecnica;
+        existingPlayerMetric.Movimiento = mediaMovimiento;
+        existingPlayerMetric.Potencia = mediaPotencia;
+        existingPlayerMetric.Mentalidad = mediaMentalidad;
+        existingPlayerMetric.Defensa = mediaDefensa;
+        existingPlayerMetric.mediaGlobal = totalMediaInforme / informs.length; // Asignar la mediaGlobal
+
+        await existingPlayerMetric.save();
+      } else {
+        // Crear un nuevo documento si no existe uno con el mismo PlayerId
+        const newPlayerMetric = new PmetricsModel({
+          PlayerId: playerId,
+          Ofensiva: mediaOfensiva,
+          Tecnica: mediaTecnica,
+          Movimiento: mediaMovimiento,
+          Potencia: mediaPotencia,
+          Mentalidad: mediaMentalidad,
+          Defensa: mediaDefensa,
+          mediaGlobal: totalMediaInforme / informs.length, // Asignar la mediaGlobal
+        });
+
+        await newPlayerMetric.save();
+      }
     }
-}
+
+    const totalInforms = informs.length;
+    const mediaGlobal = totalMediaInforme / totalInforms; // Calcular la MediaGlobal
+   
+
+    // res.status(200).json({ message: "Medias de habilidades calculadas y almacenadas correctamente", mediaGlobal });
+    console.log(mediaGlobal)
+  } catch (error) {
+    console.log(error)
+    // res.status(500).json({ message: error.message });
+  }
+};
+
+// Calcular el promedio de un conjunto de números
+const calculateAverage = (numbers) => {
+  const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+  return sum / numbers.length;
+};

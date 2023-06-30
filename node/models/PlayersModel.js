@@ -14,7 +14,8 @@ const PlayerSchema = new Schema(
       enum: ['izquierda', 'derecha', 'ambos'],
       required: true
     },
-    Rating: { type: Number, default: 5 }
+    Rating: { type: Number, default: 5 },
+    Created_At: {type: Date, default: Date.now}
   },
   { collection: 'players' }
 );

@@ -6,7 +6,7 @@ import db from './database/db.js';
 import PlayerRoutes from './routes/PlayerRoutes.js';
 import InformRoutes from './routes/InformRoutes.js';
 import UserRoutes from './routes/UserRoutes.js';
-import PMetricRoutes from './routes/PMetricsRoutes.js';
+// import PMetricRoutes from './routes/PMetricsRoutes.js';
 
 
 const app = express()
@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}))
 app.use('/informs', InformRoutes)
 app.use('/players', PlayerRoutes)
 app.use('/users', UserRoutes)
-app.use('/player-metrics', PMetricRoutes)
+// app.use('/player-metrics', PMetricRoutes)
 
 
 app.listen(8000, () =>{

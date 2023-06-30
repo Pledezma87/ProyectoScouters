@@ -17,6 +17,8 @@ app.use(express.urlencoded({extended:true}))
 app.use('/informs', InformRoutes)
 app.use('/players', PlayerRoutes)
 app.use('/users', UserRoutes)
+
+
 // app.use('/player-metrics', PMetricRoutes)
 
 

@@ -86,6 +86,7 @@ import User from '../models/UsersModel.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';//NPM I bcrypt
 
+
 // R E G I S T R O
 const registerUser = async (req, res) => {
     try {

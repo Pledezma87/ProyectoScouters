@@ -21,14 +21,20 @@
 
 
 import mongoose from "mongoose";
-const passwordValidator = (value) => {
-    return /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
-};
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
+// const passwordValidator = (value) => {
+//     return /^(?=.*[a-zA-Z])(?=.*\d).+$/.test(value);
+// };
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    validate: {
+      validator: USER_REGEX,
+      message: 'El nombre debe contener entre 3  y 23 carácteres, con al menos una letra mayúscula'
+    }
   },
  
   password: {
@@ -36,8 +42,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 5,
     validate: {
-      validator: passwordValidator,
-      message: 'La contraseña debe contener 5 carácteres al menos una letra y un número'
+      validator: PWD_REGEX,
+      message: 'La contraseña debe contener entre 8 y 24 carácteres, con al menos una letra y un número'
     }
   },
   email: {
@@ -55,3 +61,17 @@ const userSchema = new mongoose.Schema({
 
 const User=mongoose.model('User',userSchema)
 export default User
+
+
+
+
+
+
+
+
+
+
+
+
+
+

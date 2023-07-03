@@ -1,6 +1,18 @@
 import InformModel from '../models/InformModel.js';
 import PmetricsModel from '../models/PmetricsModel.js';
 
+// Obtener los datos de la colección "player-metrics"
+export const getPlayerMetrics = async (req, res) => {
+  try {
+    const playerMetrics = await PmetricsModel.find();
+    res.json(playerMetrics);
+  } catch (error) {
+    console.error('Error al obtener los datos de la colección "player-metrics":', error);
+    res.status(500).json({ error: 'Error al obtener los datos' });
+  }
+};
+
+
 // Calcular la media de habilidades y la MediaGlobal y almacenarlas en la colección "player-metrics"
 export const calculatePlayerMetrics = async (req, res) => {
   try {
@@ -77,7 +89,6 @@ export const calculatePlayerMetrics = async (req, res) => {
     const totalInforms = informs.length;
     const mediaGlobal = totalMediaInforme / totalInforms; // Calcular la MediaGlobal
    
-
     // res.status(200).json({ message: "Medias de habilidades calculadas y almacenadas correctamente", mediaGlobal });
     console.log(mediaGlobal)
   } catch (error) {

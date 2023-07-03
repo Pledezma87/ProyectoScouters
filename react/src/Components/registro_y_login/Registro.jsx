@@ -1,26 +1,26 @@
 import React from 'react';
-import './login.css'; // archivo CSS para los estilos
+import './register.css'; // archivo CSS para los estilos
 
-const Login = () => {
+const Registro = () => {
   return (
-    <div className="loginContainer">
+    <div className="login-container2">
       <form className="loginForm">
         <header className="Header">
-          <h1 className="headerTitle">INICIA SESIÓN</h1>
+          <h1 className="headerTitle">REGISTRATE</h1>
         </header>
         <input className="inputField" type="text" placeholder="Correo electrónico" />
         <input className="inputField" type="text" placeholder="Usuario" />
         <input className="inputField" type="password" placeholder="Contraseña" />
         <div className="Register">
           <div className="registerContent">
-           
-            <a href="#" className="loginLink">Recupera tu contraseña</a>
+            <span className="register-text">¿Tienes una cuenta?</span>
+            <a href="/" className="loginLink">Inicia Sesión</a>
           </div>
-          <button className="registerButton">INICIAR SESIÓN</button>
+          <button className="registerButton">REGISTRO</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Registro;

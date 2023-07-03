@@ -1,10 +1,15 @@
-// import express from 'express';
-// import { calculatePlayerMetrics } from '../controllers/PMetricsController.js';
+import express from 'express';
+import { calculatePlayerMetrics, getPlayerMetrics } from '../controllers/PMetricsController.js';
 
-// const router = express.Router();
+const router = express.Router();
 
-// // Calcular y almacenar las medias de habilidades
-// router.post('/calculate', calculatePlayerMetrics);
 
-// export default router;
 
+// Calcular y almacenar las medias de habilidades
+router.post('/calculate', calculatePlayerMetrics);
+
+// Obtener los datos de la colección "player-metrics"
+router.get('/', getPlayerMetrics);
+
+
+export default router;

@@ -1,0 +1,84 @@
+pedido: {
+    type: mongoose.Schema.Types.ObjectId,
+        ref: 'Pedido',
+            required: true
+}
+const albaranSchema = new mongoose.Schema({
+    // Propiedades del albarán
+    pedido: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Pedido',
+        required: true
+    }
+});
+exports.mostrarPedido = async (req, res) => {
+    try {
+        const pedido = await Pedido.findById(req.params.id)
+            .populate('albaranes')
+            .populate('facturas');
+        if (!pedido) {
+            return res.status(404).json({ mensaje: 'Pedido no encontrado' });
+        }
+        res.json(pedido);
+    } catch (error) {
+        res.status(500).json({ mensaje: 'Error al mostrar el pedido', error });
+    }
+};
+{
+    "id": "1",
+        "fecha": "2023-06-28",
+            "cliente": "Juan Pérez",
+                "albaranes": [
+                    {
+                        "id": "101",
+                        "fecha": "2023-06-28",
+                        "producto": "Producto A",
+                        "cantidad": 5
+                    },
+                    {
+                        "id": "102",
+                        "fecha": "2023-06-29",
+                        "producto": "Producto B",
+                        "cantidad": 3
+                    }
+                ],
+                    "facturas": [
+                        {
+                            "id": "201",
+                            "fecha": "2023-06-30",
+                            "monto": 1000.00
+                        }
+                    ]
+}
+
+
+exports.mostrarPedido = async (req, res) => {
+    try {
+      const pedido = await Pedido.findById(req.params.id);
+      if (!pedido) {
+        return res.status(404).json({ mensaje: 'Pedido no encontrado' });
+      }
+  
+      // Obtener las facturas asociadas al pedido
+      const facturas = await Factura.find({ pedido: pedido._id });
+  
+      // Obtener los albaranes asociados al pedido
+      const albaranes = await Albaran.find({ pedido: pedido._id });
+  
+      // Construir el objeto de respuesta
+      const pedidoConDetalle = {
+        id: pedido._id,
+        fecha: pedido.fecha,
+        cliente: pedido.cliente,
+        facturas: facturas,
+        albaranes: albaranes
+      };
+  
+      res.json(pedidoConDetalle);
+    } catch (error) {
+      res.status(500).json({ mensaje: 'Error al mostrar el pedido', error });
+    }
+  };
+
+  const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0,9])(?=.*[!@#$%]).{8,24}$/

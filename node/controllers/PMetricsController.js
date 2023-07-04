@@ -90,10 +90,10 @@ export const calculatePlayerMetrics = async (req, res) => {
         await newPlayerMetric.save();
       }
     }
-
+    
     const totalInforms = informs.length;
     const mediaGlobal = totalMediaInforme / totalInforms; // Calcular la MediaGlobal
-   
+    
     // res.status(200).json({ message: "Medias de habilidades calculadas y almacenadas correctamente", mediaGlobal });
     console.log(mediaGlobal)
   } catch (error) {

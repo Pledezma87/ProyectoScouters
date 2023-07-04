@@ -1,16 +1,17 @@
 import React from 'react';
 import './App.css';
-import Registro from './Components/registro_y_login/Registro';
-import Login from './Components/registro_y_login/Login';
-import RadarChart from './Components/Metricas/RadarChart';
-
+// import Registro from './Components/registro_y_login/Registro';
+// import Login from './Components/registro_y_login/Login';
+// import RadarChart from './Components/Metricas/RadarChart';
+import {Landing} from './Pages/Landing/Landing'
 
 const App = () => {
   return (
     <div>
-      <Registro/>
+      <Landing/>
+      {/* <Registro/>
         <Login/>
-        <RadarChart/>
+        <RadarChart/> */}
     </div>
   );
 };

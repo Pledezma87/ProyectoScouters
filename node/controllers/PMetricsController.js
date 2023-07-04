@@ -33,6 +33,8 @@ export const calculatePlayerMetrics = async (req, res) => {
           Potencia: [],
           Mentalidad: [],
           Defensa: [],
+          totalMediaInforme: 0,
+            informCount: 0,
         };
       }
 
@@ -43,6 +45,8 @@ export const calculatePlayerMetrics = async (req, res) => {
       playerMetrics[playerId].Mentalidad.push(habilidades.Mentalidad);
       playerMetrics[playerId].Defensa.push(habilidades.Defensa);
 
+      playerMetrics[playerId].totalMediaInforme += inform.MediaInforme;
+      playerMetrics[playerId].informCount++;
       totalMediaInforme += inform.MediaInforme;
     });
 
@@ -56,6 +60,8 @@ export const calculatePlayerMetrics = async (req, res) => {
       const mediaPotencia = calculateAverage(playerMetric.Potencia);
       const mediaMentalidad = calculateAverage(playerMetric.Mentalidad);
       const mediaDefensa = calculateAverage(playerMetric.Defensa);
+      const mediaGlobal = playerMetric.totalMediaInforme / playerMetric.informCount;
+
       const existingPlayerMetric = await PmetricsModel.findOne({ PlayerId: playerId });
 
       if (existingPlayerMetric) {
@@ -66,8 +72,8 @@ export const calculatePlayerMetrics = async (req, res) => {
         existingPlayerMetric.Potencia = mediaPotencia;
         existingPlayerMetric.Mentalidad = mediaMentalidad;
         existingPlayerMetric.Defensa = mediaDefensa;
-        existingPlayerMetric.mediaGlobal = totalMediaInforme / informs.length; // Asignar la mediaGlobal
-
+        // existingPlayerMetric.mediaGlobal = totalMediaInforme / informs.length; // Asignar la mediaGlobal
+        existingPlayerMetric.mediaGlobal = mediaGlobal;
         await existingPlayerMetric.save();
       } else {
         // Crear un nuevo documento si no existe uno con el mismo PlayerId
@@ -79,8 +85,7 @@ export const calculatePlayerMetrics = async (req, res) => {
           Potencia: mediaPotencia,
           Mentalidad: mediaMentalidad,
           Defensa: mediaDefensa,
-          mediaGlobal: totalMediaInforme / informs.length, // Asignar la mediaGlobal
-        });
+          mediaGlobal: mediaGlobal,        });
 
         await newPlayerMetric.save();
       }

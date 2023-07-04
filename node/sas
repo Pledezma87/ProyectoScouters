@@ -1,0 +1,39 @@
+for (let playerId in playerMetrics) {
+    const playerMetric = playerMetrics[playerId];
+  
+    const mediaOfensiva = calculateAverage(playerMetric.Ofensiva);
+    const mediaTecnica = calculateAverage(playerMetric.Tecnica);
+    const mediaMovimiento = calculateAverage(playerMetric.Movimiento);
+    const mediaPotencia = calculateAverage(playerMetric.Potencia);
+    const mediaMentalidad = calculateAverage(playerMetric.Mentalidad);
+    const mediaDefensa = calculateAverage(playerMetric.Defensa);
+    const existingPlayerMetric = await PmetricsModel.findOne({ PlayerId: playerId });
+  
+    if (existingPlayerMetric) {
+      // Actualizar el documento existente con los nuevos valores
+      existingPlayerMetric.Ofensiva = mediaOfensiva;
+      existingPlayerMetric.Tecnica = mediaTecnica;
+      existingPlayerMetric.Movimiento = mediaMovimiento;
+      existingPlayerMetric.Potencia = mediaPotencia;
+      existingPlayerMetric.Mentalidad = mediaMentalidad;
+      existingPlayerMetric.Defensa = mediaDefensa;
+      existingPlayerMetric.mediaGlobal = totalMediaInforme / informs.length; // Asignar la mediaGlobal
+  
+      await existingPlayerMetric.save();
+    } else {
+      // Crear un nuevo documento si no existe uno con el mismo PlayerId
+      const newPlayerMetric = new PmetricsModel({
+        PlayerId: playerId,
+        Ofensiva: mediaOfensiva,
+        Tecnica: mediaTecnica,
+        Movimiento: mediaMovimiento,
+        Potencia: mediaPotencia,
+        Mentalidad: mediaMentalidad,
+        Defensa: mediaDefensa,
+        mediaGlobal: totalMediaInforme / informs.length, // Asignar la mediaGlobal
+      });
+  
+      await newPlayerMetric.save();
+    }
+  }
+  

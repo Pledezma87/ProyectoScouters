@@ -5,15 +5,14 @@ import React from 'react';
 import './Landing.css';
 import VideoFutbol from "./Video/VideoFutbol1.mp4";
 
-import SportsSoccerIcon from '@material-ui/icons/SportsSoccer';
-import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
-import AssessmentIcon from '@material-ui/icons/Assessment';
-import GroupIcon from '@material-ui/icons/Group';
-import EventNoteIcon from '@material-ui/icons/EventNote';
-import PlaylistAddCheckIcon from '@material-ui/icons/PlaylistAddCheck';
-import PeopleIcon from '@material-ui/icons/People';
-import SettingsIcon from '@material-ui/icons/Settings';
-
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import GroupIcon from '@mui/icons-material/Group';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import PeopleIcon from '@mui/icons-material/People';
+import SettingsIcon from '@mui/icons-material/Settings';
 export function Landing() {
   const scrollToSection = () => {
     const section = document.querySelector('.third-section');
@@ -105,7 +104,7 @@ export function Landing() {
       <p>Análisis de rendimiento colectivo</p>
     </div>
     <div className="service">
-      <SettingsIcon />
+      <SettingsIcon/>
       <p>Personalización y configuración avanzada</p>
     </div>
   </div>

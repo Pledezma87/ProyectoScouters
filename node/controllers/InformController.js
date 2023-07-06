@@ -44,11 +44,15 @@ export const getInform = async (req, res) => {
 // Crear un Informe
 export const createInform = async (req, res) => {
   try {
-    await InformModel.create(req.body);
 
-    // Después de crear el informe, calcular automáticamente la media de habilidades
-    await calculatePlayerMetrics();
+  const newInforme = await InformModel.create(req.body);
 
+    if (newInforme){
+      // console.log(newInforme)
+        // Después de crear el informe, calcular automáticamente la media de habilidades
+        await calculatePlayerMetrics(req.body.PlayerId);
+    }
+  
     res.status(200).json({ message: "Informe creado correctamente" });
   } catch (error) {
     res.status(500).json({ message: error.message });

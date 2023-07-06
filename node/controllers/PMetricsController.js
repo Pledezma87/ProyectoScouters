@@ -1,5 +1,6 @@
 import InformModel from '../models/InformModel.js';
 import PmetricsModel from '../models/PmetricsModel.js';
+import PlayersModel from '../models/PlayersModel.js';
 
 // Obtener los datos de la colección "player-metrics"
 export const getPlayerMetrics = async (req, res) => {
@@ -12,13 +13,15 @@ export const getPlayerMetrics = async (req, res) => {
   }
 };
 
-
 // Calcular la media de habilidades y la MediaGlobal y almacenarlas en la colección "player-metrics"
-export const calculatePlayerMetrics = async (req, res) => {
+export const calculatePlayerMetrics = async (id) => {
   try {
-    const informs = await InformModel.find({}); // Obtener todos los informes
+    console.log(id);
+    const informs = await InformModel.find({PlayerId: id}); // Obtener todos los informes
+    console.log(informs)
     const playerMetrics = {};
     let totalMediaInforme = 0; // Variable para almacenar la suma de todas las MediaInforme
+    let totalInformes = 0; // Variable para almacenar el número total de informes
 
     // Calcular la media de habilidades para cada jugador y la suma de todas las MediaInforme
     informs.forEach((inform) => {
@@ -34,11 +37,11 @@ export const calculatePlayerMetrics = async (req, res) => {
           Mentalidad: [],
           Defensa: [],
           totalMediaInforme: 0,
-            informCount: 0,
+          informCount: 0,
         };
       }
 
-      playerMetrics[playerId].Ofensiva.push(habilidades.Ofensiva); 
+      playerMetrics[playerId].Ofensiva.push(habilidades.Ofensiva);
       playerMetrics[playerId].Tecnica.push(habilidades.Tecnica);
       playerMetrics[playerId].Movimiento.push(habilidades.Movimiento);
       playerMetrics[playerId].Potencia.push(habilidades.Potencia);
@@ -46,11 +49,13 @@ export const calculatePlayerMetrics = async (req, res) => {
       playerMetrics[playerId].Defensa.push(habilidades.Defensa);
 
       playerMetrics[playerId].totalMediaInforme += inform.MediaInforme;
+        // playerMetrics[playerId].totalMediaInforme = playerMetrics[playerId].totalMediaInforme + inform.MediaInforme;
       playerMetrics[playerId].informCount++;
       totalMediaInforme += inform.MediaInforme;
+      totalInformes++;
     });
 
-    // Calcular la media de habilidades para cada jugador
+    // Calcular la media de habilidades para cada jugador y actualizar la MediaGlobal
     for (let playerId in playerMetrics) {
       const playerMetric = playerMetrics[playerId];
 
@@ -60,7 +65,9 @@ export const calculatePlayerMetrics = async (req, res) => {
       const mediaPotencia = calculateAverage(playerMetric.Potencia);
       const mediaMentalidad = calculateAverage(playerMetric.Mentalidad);
       const mediaDefensa = calculateAverage(playerMetric.Defensa);
-      const mediaGlobal = playerMetric.totalMediaInforme / playerMetric.informCount;
+      const mediaGlobal = playerMetric.informCount > 0
+        ? playerMetric.totalMediaInforme / playerMetric.informCount
+        : 0;
 
       const existingPlayerMetric = await PmetricsModel.findOne({ PlayerId: playerId });
 
@@ -72,7 +79,6 @@ export const calculatePlayerMetrics = async (req, res) => {
         existingPlayerMetric.Potencia = mediaPotencia;
         existingPlayerMetric.Mentalidad = mediaMentalidad;
         existingPlayerMetric.Defensa = mediaDefensa;
-        // existingPlayerMetric.mediaGlobal = totalMediaInforme / informs.length; // Asignar la mediaGlobal
         existingPlayerMetric.mediaGlobal = mediaGlobal;
         await existingPlayerMetric.save();
       } else {
@@ -85,25 +91,45 @@ export const calculatePlayerMetrics = async (req, res) => {
           Potencia: mediaPotencia,
           Mentalidad: mediaMentalidad,
           Defensa: mediaDefensa,
-          mediaGlobal: mediaGlobal,        });
+          mediaGlobal: mediaGlobal,
+        });
 
         await newPlayerMetric.save();
       }
     }
+
+    // Calcular el rating de jugador
+    const globalMediaGlobal = totalInformes > 0
+      ? totalMediaInforme / totalInformes
+      : 0;
     
-    const totalInforms = informs.length;
-    const mediaGlobal = totalMediaInforme / totalInforms; // Calcular la MediaGlobal
+    console.log(globalMediaGlobal);
+
+    // Actualizar el campo Rating de todos los jugadores en la colección Players
+    // await PlayersModel.updateOne({id: id}, { Rating: globalMediaGlobal });
     
-    // res.status(200).json({ message: "Medias de habilidades calculadas y almacenadas correctamente", mediaGlobal });
-    console.log(mediaGlobal)
+    try {
+      const MetricUpdated = await PlayersModel.updateOne({_id: id}, { Rating: globalMediaGlobal });
+      console.log(MetricUpdated)
+    } catch (error) {
+      console.log(error)
+    }
+
+    console.log('Cálculo de métricas de jugador completado');
+
+    // ... puedes realizar otras acciones o retornar algún valor si es necesario
   } catch (error) {
-    console.log(error)
-    // res.status(500).json({ message: error.message });
+    console.error('Error al calcular las métricas de jugador:', error);
   }
 };
 
-// Calcular el promedio de un conjunto de números
-const calculateAverage = (numbers) => {
-  const sum = numbers.reduce((acc, curr) => acc + curr, 0);
-  return sum / numbers.length;
+// Calcular el promedio de un arreglo de números
+const calculateAverage = (array) => {
+  const sum = array.reduce((a, b) => a + b, 0);
+  const average = sum / array.length;
+  return isNaN(average) ? 0 : average;
 };
+
+
+
+

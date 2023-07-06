@@ -40,7 +40,7 @@ const pmetricsSchema = new Schema(
     Created_At: { type: Date, default: Date.now },
     mediaGlobal: { type: Number }
   },
-  { collection: 'player-metrics' }
+  { collection: 'playermetrics' }
 );
 
 // Redondear las medias de habilidades y la media global hacia números enteros

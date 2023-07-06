@@ -13,6 +13,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import PeopleIcon from '@mui/icons-material/People';
 import SettingsIcon from '@mui/icons-material/Settings';
+
 export function Landing() {
   const scrollToSection = () => {
     const section = document.querySelector('.third-section');

@@ -1,0 +1,385 @@
+.card {
+    flex: 0 0 300px;
+    background: rgb(255, 255, 255);
+    position: relative;
+    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin: 30px;
+}
+
+.card__background-image {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 300px;
+    margin-left: -15px;
+    margin-top: -15px;
+    border-radius: 4px;
+    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.card__background-image:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    background: linear-gradient(to bottom, #11998e, #38ef7d);
+    height: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 0px 4px 4px 0px;
+}
+
+
+  
+  .card__background-image::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.3); Color negro con opacidad del 0% */
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+  }
+  
+
+.card__flag {
+    min-height: 50px;
+    max-width: 80px;
+    margin: 35px 0px 0px -10px;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.worldatlas.com/r/w728/img/flag/pt-flag.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+
+.card__name {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--oscuro);
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 36px;
+    font-weight: 100;
+    letter-spacing: 5px;
+    font-family: 'Oswald';
+    font-weight: 300;
+}
+
+.card__name span {
+    font-weight: 500;
+    color: var(--verde);
+}
+
+.card__content {
+    display: flex;
+    clear: both;
+    align-items: center;
+    margin: 0px 15px 15px 15px;
+    flex-wrap: wrap;
+}
+
+.card__title {
+    flex: 1 1 100%;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.card__item {
+    border-radius: 4px;
+    background: #f5f5f5;
+    color: #999;
+    font-size: 12px;
+    padding: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    flex: 0 1 auto;
+}
+
+.card__item span {
+    font-weight: bold;
+}
+
+.card__item:last-child {
+    margin-right: 0px;
+}
+
+.button-container {
+    margin-top: 10px;
+    margin-bottom: 10;
+    padding: 0px 15px 15px 15px;
+    box-sizing: border-box;
+}
+
+.button-container button {
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    width: 100%;
+    display: block;
+    padding: 15px 0px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.button-container button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(17, 153, 142, 0.8), rgba(56, 239, 125, 0.8));
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.button-container button:hover {
+    color: white;
+    background: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button-container button:hover:before {
+    left: 0;
+}
+
+.button-container button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(17, 153, 142, 0.8), rgba(56, 239, 125, 0.8));
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.button-container button:hover:after {
+    right: 0;
+}
+
+.button-container a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button-container a:hover {
+    text-decoration: none;
+}
+
+.rating {
+    color: #C7F55C;
+    font-family: Oswald;
+    font-size: 52px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 2.24px;
+    margin-left: 50px;
+}
+
+.posicion {
+    color: var(--gris-ceniza) ;
+    font-family: Oswald;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0.84px;
+    margin-left: 150px;
+}
+
+.separador {
+    margin-top: 20px;
+    margin-left: 130px;
+    width: 89.632px;
+    height: 2px;
+    flex-shrink: 0;
+    background-color: var(--verde);
+}
+
+
+
+.container-seguimiento {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 15px;
+    font-style: normal;
+    font-family: 'Oswald';
+}
+
+.container-seguimiento p {
+    color: rgba(0, 0, 0, 0.50);
+    font-family: 'Oswald';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0.7px;
+}
+
+.container-seguimiento span {
+    color: #000;
+    font-family: 'Oswald';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0.7px;
+}
+
+
+.datos-basicos{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    color: white;
+    font-family: 'Oswald';
+    margin-top: 200px;
+}
+
+.edad{
+    margin-right:100px ;
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    font-family: Oswald;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 100%;
+    letter-spacing: 0.7px;
+}
+
+.estatura{
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    font-family: Oswald;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 100%;
+    letter-spacing: 0.7px;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* COMPONENTE CARD */
+
+/* 
+
+import React from 'react';
+import './Card.css';
+import { Link } from 'react-router-dom';
+import jugadorImg from './imgs/jugador.jpg'
+
+export function Cards() {
+  const backgroundImageUrl = jugadorImg;
+  return (
+   
+    <div className="card card--one animated fadeInUp">
+      <div className="card__background-image animated fadeInDown delay-1s" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+        <span className='rating'>8.5</span>
+        <span className='posicion'>Delantero</span>
+        <div className="card__flag animated fadeInLeft delay-3s"></div>
+        <div className="card__name animated fadeInUp delay-2s">
+          Ruben <span>Neves</span>
+        </div>
+        <div className='datos-basicos'>
+          <div className='edad'>
+            <p>Edad</p>
+            <span>17</span>
+          </div>
+          <div className='estatura'>
+            <p>Estatura</p>
+            <span>1.60m</span>
+          </div>
+        </div>
+      </div>
+      <div className="card__content">
+        <div className="card__title animated fadeInRight delay-4s">Stats</div>
+        <div className="card__item animated fadeInRight delay-4s">
+          <span>8</span> Media
+        </div>
+        <div className="card__item animated fadeInRight delay-4s">
+          <span>6</span> Skills Principales
+        </div>
+        <div className="card__item animated fadeInRight delay-4s">
+          <span>8</span> Skills Tácticas
+        </div>
+        <div className="card__item animated fadeInRight delay-4s">
+          <span>9</span> Skills Físicas
+        </div>
+
+        <div className='separador'></div>
+      </div>
+
+      <div className='container-seguimiento'>
+        <div className='subcontainer-seguimiento'>
+          <p>Ult.Eval:</p>
+          <span>8.5</span>
+        </div>
+        <div className='subcontainer-seguimiento'>
+          <p>Informes:</p>
+          <span>6</span>
+        </div>
+        <div className='subcontainer-seguimiento'>
+          <p>Prox.Seguimiento</p>
+          <span>06/05/23</span>
+        </div>
+      </div>
+
+      <div className="button-container animated fadeInUp delay-5s">
+        <Link to="#">
+          <button className='button' href="#">FICHA TÉCNICA</button>
+        </Link>
+      </div>
+    </div>
+ 
+  );
+}
+ */
+
+
+
+
+
+

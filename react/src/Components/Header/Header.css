@@ -1,0 +1,146 @@
+:root {
+    --verde: #C7F55C;
+    --gris: #36404C;
+    --gris-ceniza: #292E3A;
+    --claro: #FFFFFF;
+    --oscuro: #201e1f;
+    --color-primario: var(--verde);
+    --color-secundario: var(--gris-ceniza);
+  }
+  
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    color: var(--claro);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    background: linear-gradient(to right, var(--verde) 40%, var(--oscuro) 40%);
+}
+
+.header__company {
+    display: flex;
+    margin-left: 150px;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.header__company-badge {
+    background-color: var(--claro);
+    color: var(--gris-ceniza);
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 1.4px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  
+
+.header__company-name {
+    text-transform: uppercase;
+    color: #292E3A;
+    text-align: center;
+    font-family: Oswald;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 3.36px;
+}
+
+.header__menu {
+    display: flex;
+    margin-right: 150px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-style: normal;
+    
+}
+
+.header__menu-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    color: var(--claro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header__menu-item:hover {
+    color: var(--verde);
+}
+
+.header__menu-icon {
+    margin-right: 5px;
+  
+}
+
+.header__menu-item + .header__menu-item {
+    margin-left: 10rem;
+  }
+  
+  
+
+.header__search {
+    position: relative;
+    margin-left: 20px;
+}
+
+.header__search-input {
+    width: 150px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.header__search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: var(--claro);
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.header__search-input:focus+.header__search-icon {
+    color: var(--verde);
+}
+
+.header__profile,
+.header__favorites,
+.header__notifications {
+    margin-left: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header__profile-icon,
+.header__favorites-icon,
+.header__notifications-icon {
+    color: var(--claro);
+    font-size: 18px;
+}
+
+.header__profile-icon:hover,
+.header__favorites-icon:hover,
+.header__notifications-icon:hover {
+    color: var(--verde);
+}
+
+
+
+
+
+
+
+
+

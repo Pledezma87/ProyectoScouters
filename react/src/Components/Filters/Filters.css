@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap");
+
+/* COLORES DEL PROYECTO */
+:root {
+  --verde: #C7F55C;
+  --gris: #36404C;
+  --gris-ceniza: #292E3A;
+  --claro: #FFFFFF;
+  --oscuro: #201e1f;
+}
+
+
+
+/* Filters.css */
+
+.filters {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--claro);
+    padding: 20px;
+    border-radius: 8px;
+    height: 100vh;
+  }
+  
+  .filters__title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  
+  .filters__form {
+    display: grid;
+    gap: 20px;
+  }
+
+  .filters__radio-group{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .filters__group {
+    font-family: 'Oswald';
+    display: grid;
+    gap: 10px;
+  }
+  
+  .filters__label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    margin-right: 10px;
+  }
+  
+  .filters__input,
+  .filters__select {
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .filters__range {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .filters__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .filters__button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: var(--gris);
+    color: var(--claro);
+    cursor: pointer;
+  }
+  
+  .filters__button:hover {
+    background-color: var(--verde);
+    color: var(--oscuro);
+    transition: 0.3s ease-in-out;
+  }
+  

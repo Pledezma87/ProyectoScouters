@@ -4,7 +4,7 @@ import React from 'react';
 // import YouTubeIcon from '@mui/icons-material/YouTube';
 import './Landing.css';
 import VideoFutbol from "./Video/VideoFutbol1.mp4";
-
+import { Footer } from '../../Components/Footer/Footer';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import AssessmentIcon from '@mui/icons-material/Assessment';
@@ -111,7 +111,7 @@ export function Landing() {
   </div>
   </div>
 </section>
-
+    <Footer/>
     </div>
   );
 }

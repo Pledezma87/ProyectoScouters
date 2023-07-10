@@ -1,0 +1,38 @@
+.interfaz-jugadores-container {
+  background-image: url('./img/futbol2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+}
+
+.interfaz-jugadores-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.863);
+  z-index: -1;
+}
+
+
+.main-filters{
+  display: flex;
+  flex-direction: row;
+  padding: 50px;
+}
+
+.main-filters-cards{
+  display: flex;
+  justify-content:left;
+  align-items:center;
+  
+
+}
+
+.main-cards{
+width: 400px;
+margin-bottom: 350px;
+}

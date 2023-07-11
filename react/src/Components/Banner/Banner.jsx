@@ -3,6 +3,7 @@ import { Icon } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import './Banner.css';
+import { Link } from 'react-router-dom';
 
 export function Banner() {
   return (
@@ -14,10 +15,10 @@ export function Banner() {
         <h2 className="banner__text">JUGADORES FAVORITOS</h2>
       </div>
       <div className="banner__right">
-        <button className="banner__button">
+        <Link to="#" className="banner__button">
           <Icon component={AssignmentIcon} className="banner__button-icon" />
           Nuevo Informe
-        </button>
+        </Link>
       </div>
     </div>
   );

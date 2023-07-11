@@ -10,9 +10,12 @@ export function Filters() {
   const [competition, setCompetition] = useState('');
   const [position, setPosition] = useState('');
   const [foot, setFoot] = useState('');
-  const [ageRange, setAgeRange] = useState('');
-  const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
+  const [minAge, setMinAge] = useState('');
+  const [maxAge, setMaxAge] = useState('');
+  const [minHeight, setMinHeight] = useState('');
+  const [maxHeight, setMaxHeight] = useState('');
+  const [minWeight, setMinWeight] = useState('');
+  const [maxWeight, setMaxWeight] = useState('');
 
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
@@ -39,14 +42,23 @@ export function Filters() {
       case 'foot':
         setFoot(value);
         break;
-      case 'ageRange':
-        setAgeRange(value);
+      case 'minAge':
+        setMinAge(value);
         break;
-      case 'height':
-        setHeight(value);
+      case 'maxAge':
+        setMaxAge(value);
         break;
-      case 'weight':
-        setWeight(value);
+      case 'minHeight':
+        setMinHeight(value);
+        break;
+      case 'maxHeight':
+        setMaxHeight(value);
+        break;
+      case 'minWeight':
+        setMinWeight(value);
+        break;
+      case 'maxWeight':
+        setMaxWeight(value);
         break;
       default:
         break;
@@ -58,7 +70,7 @@ export function Filters() {
 
     // Aquí puedes utilizar los valores de los filtros para realizar la búsqueda o realizar otras acciones
     // Por ejemplo, puedes llamar a una función pasándole los valores de los filtros como argumentos
-    // searchPlayers(gender, name, nationality, country, competition, position, foot, ageRange, height, weight);
+    // searchPlayers(gender, name, nationality, country, competition, position, foot, minAge, maxAge, minHeight, maxHeight, minWeight, maxWeight);
 
     // Luego puedes resetear los filtros si es necesario
     resetFilters();
@@ -72,9 +84,12 @@ export function Filters() {
     setCompetition('');
     setPosition('');
     setFoot('');
-    setAgeRange('');
-    setHeight('');
-    setWeight('');
+    setMinAge('');
+    setMaxAge('');
+    setMinHeight('');
+    setMaxHeight('');
+    setMinWeight('');
+    setMaxWeight('');
   };
 
   return (
@@ -83,7 +98,6 @@ export function Filters() {
         <SortIcon /> Filtros
       </h2>
       <form className="filters__form" onSubmit={handleSubmit}>
-
         <div className="filters__group">
           <label className="filters__label">Género:</label>
           <div className="filters__radio-group">
@@ -196,8 +210,8 @@ export function Filters() {
               max="21"
               className="filters__input"
               placeholder="Mínimo"
-              name="ageRange"
-              value={ageRange}
+              name="minAge"
+              value={minAge}
               onChange={handleFilterChange}
             />
             <input
@@ -206,8 +220,8 @@ export function Filters() {
               max="21"
               className="filters__input"
               placeholder="Máximo"
-              name="ageRange"
-              value={ageRange}
+              name="maxAge"
+              value={maxAge}
               onChange={handleFilterChange}
             />
           </div>
@@ -222,8 +236,8 @@ export function Filters() {
               max="200"
               className="filters__input"
               placeholder="Mínimo"
-              name="height"
-              value={height}
+              name="minHeight"
+              value={minHeight}
               onChange={handleFilterChange}
             />
             <input
@@ -232,8 +246,8 @@ export function Filters() {
               max="200"
               className="filters__input"
               placeholder="Máximo"
-              name="height"
-              value={height}
+              name="maxHeight"
+              value={maxHeight}
               onChange={handleFilterChange}
             />
           </div>
@@ -248,8 +262,8 @@ export function Filters() {
               max="100"
               className="filters__input"
               placeholder="Mínimo"
-              name="weight"
-              value={weight}
+              name="minWeight"
+              value={minWeight}
               onChange={handleFilterChange}
             />
             <input
@@ -258,13 +272,13 @@ export function Filters() {
               max="100"
               className="filters__input"
               placeholder="Máximo"
-              name="weight"
-              value={weight}
+              name="maxWeight"
+              value={maxWeight}
               onChange={handleFilterChange}
             />
           </div>
         </div>
-        
+
         <div className="filters__buttons">
           <button className="filters__button" type="submit">
             Aplicar filtros

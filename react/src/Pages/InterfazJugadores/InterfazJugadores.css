@@ -1,9 +1,19 @@
+/* COLORES DEL PROYECTO */
+:root {
+  --verde: #C7F55C;
+  --gris: #36404C;
+  --gris-ceniza: #292E3A;
+  --claro: #FFFFFF;
+  --oscuro: #201e1f;
+}
+
+
 .interfaz-jugadores-container {
   background-image: url('./img/futbol2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-
+  min-height: 100vh;
 }
 
 .interfaz-jugadores-container::before {
@@ -17,22 +27,22 @@
   z-index: -1;
 }
 
-
-.main-filters{
-  display: flex;
-  flex-direction: row;
-  padding: 50px;
+.footer-container {
+  flex-grow: 1; /* Permite que el contenido crezca para llenar el espacio disponible */
 }
 
-.main-filters-cards{
+.main-filters-cards {
   display: flex;
-  justify-content:left;
-  align-items:center;
-  
+  justify-content: space-around;
+  padding: 30px;
+}
 
+.vertical-line {
+  width: 1px; /* Ancho de la línea */
+  background-color: var(--verde); /* Color de la línea */
+  height: 100vh; /* Altura de la línea */
 }
 
 .main-cards{
-width: 400px;
-margin-bottom: 350px;
+  margin-right: 450px;
 }

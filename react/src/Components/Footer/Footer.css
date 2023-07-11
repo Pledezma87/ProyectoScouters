@@ -10,25 +10,12 @@
 
 
 
-
-/* Estilos para el sticky footer */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
+/* CSS Footer */
 .footer-container {
   background-color: var(--oscuro);
   color: var(--claro);
   padding: 20px 0;
   flex-shrink: 0; /* Evita que el footer se encoge */
-  margin-top:auto ;
 }
 
 .footer-content {
@@ -38,32 +25,29 @@ html, body {
   flex-grow: 1; /* Hace que el contenido del footer se expanda para llenar el espacio disponible */
 }
 
-  
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  
-  .icon {
-    color: var(--claro);
-    font-size: 24px;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-  }
-  
-  .icon:hover {
-    color: var(--verde);
-  }
-  
-  .footer-text {
-    font-size: 14px;
-  }
-  
-  .footer-link {
-    color: var(--verde);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  color: var(--claro);
+  font-size: 24px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: var(--verde);
+}
+
+.footer-text {
+  font-size: 14px;
+}
+
+.footer-link {
+  color: var(--verde);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}

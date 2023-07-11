@@ -16,7 +16,7 @@ export function App() {
         <Route path="/" element={<Landing/>}  />
         <Route path="/AvisoLegal" element={<AvisoLegal/>}  />
         <Route path="/InterfazJugadores" element={<InterfazJugadores/>}  />
-     
+        {/* <Route path="/InterfazJugadores" element={<InterfazJugadores/>}  /> */}
         {/* <Registro/>
         <Login/>
         <RadarChart/> */}

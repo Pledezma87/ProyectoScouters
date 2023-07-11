@@ -33,16 +33,29 @@
 
 .main-filters-cards {
   display: flex;
+  align-items: flex-start;
   justify-content: space-around;
-  padding: 30px;
+  padding: 30px; 
 }
 
 .vertical-line {
   width: 1px; /* Ancho de la línea */
   background-color: var(--verde); /* Color de la línea */
   height: 100vh; /* Altura de la línea */
+  margin-left: 100px;
 }
 
 .main-cards{
-  margin-right: 450px;
+  margin-left: 0;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-gap: 20px;
+ 
 }
+
+.main-filters{
+  width: 400px;
+  position: static;
+}
+

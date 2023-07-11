@@ -12,6 +12,7 @@ export function OrdenarPor({ onOrdenarPor }) {
 
   return (
     <div className="ordenar-por">
+      <div className='cantidad-jugadores'><p>33 Jugadores</p></div>
       <label htmlFor="orden-select" className="label">Ordenar por:</label>
       <select id="orden-select" className="select" value={orden} onChange={handleOrdenChange}>
         <option value="">Ninguno</option>

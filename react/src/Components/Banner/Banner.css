@@ -12,12 +12,13 @@
 .banner {
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(to right, rgba(54, 64, 76, 0.2) 45%, rgba(0, 0, 0, 0.21) 45%);
+    background: linear-gradient(to right, rgba(54, 64, 76, 0.30) 45%, rgba(0, 0, 0, 0.40) 45%);
     height: 175px;
     width: auto;
     padding: 0 auto;
     color: var(--claro);
     margin-top: 50px;
+
 }
 
 .banner__left {
@@ -45,7 +46,7 @@
 
 .banner__icon {
     color: var(--oscuro);
- 
+    
 }
 
 .banner__text {
@@ -61,7 +62,7 @@
 .banner__right {
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content:space-around;
     width: 50%;
 }
 

@@ -1,0 +1,63 @@
+/* :root {
+  --verde: #C7F55C;
+  --gris: #36404C;
+  --gris-ceniza: #292E3A;
+  --claro: #FFFFFF;
+  --oscuro: #201e1f;
+}
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.interfaz-nuevos-jugadores-container {
+  background-image: url('./img/EntrenadorFutbol.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  min-height: 100vh;
+}
+
+.interfaz-nuevos-jugadores-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.nuevo-footer-container {
+  flex-grow: 1;
+}
+
+.main-nuevos-filtros-tarjetas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 30px; 
+  position: relative;
+}
+
+.vertical-line {
+  width: 3px;
+  background-color: var(--verde);
+  height: 100vh;
+  margin-left: 50px;
+}
+
+.main-tarjetas {
+  margin-left: 0;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 20px;
+}
+
+.main-filtros-nuevos {
+  width: 400px;
+  position: static;
+} */

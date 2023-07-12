@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Person, Star, Notifications } from '@mui/icons-material';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
@@ -16,11 +16,11 @@ export function Header() {
             </Link>
 
             <div className="header__menu">
-                <Link to="/jugadores" className="header__menu-item">
+                <Link to="/InterfazJugadores" className="header__menu-item">
                     <span className="header__menu-icon"><SportsSoccerIcon /></span>
                     Jugadores
                 </Link>
-                <Link to="/informes" className="header__menu-item">
+                <Link to="/InterfazInformes" className="header__menu-item">
                     <span className="header__menu-icon"><DescriptionIcon /></span>
                     Informes
                 </Link>

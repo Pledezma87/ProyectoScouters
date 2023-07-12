@@ -3,6 +3,7 @@ import React from 'react';
 // import TwitterIcon from '@mui/icons-material/Twitter';
 // import YouTubeIcon from '@mui/icons-material/YouTube';
 import './Landing.css';
+import { Link } from "react-router-dom";
 import VideoFutbol from "./Video/VideoFutbol1.mp4";
 import { Footer } from '../../Components/Footer/Footer';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
@@ -38,8 +39,8 @@ export function Landing() {
         </div> 
 
         <div className='botones'>
-        <button>REGÍSTRATE</button>
-        <button>INICIA SESIÓN</button>
+          <Link to="/registro"><button>REGÍSTRATE</button></Link>
+          <Link to="/login"><button>INICIA SESIÓN</button></Link>         
         </div>
         
         </div>

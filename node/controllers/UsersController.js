@@ -64,13 +64,13 @@ export const registerUser = async (req, res) => {
       const transporter = nodemailer.createTransport({
         service: "hotmail",
         auth: {
-            user: "Alejandro.902019@hotmail.com",
-            pass: "hijodeDios2",
+            user: "Scouters_Es@outlook.es",
+            pass: "cualquiercosa12345",
         },
       });
 
       const mailOptions = {
-        from: "Alejandro.902019@hotmail.com",
+        from: "Scouters_Es@outlook.es",
         to: userCreate.email,
         subject: "Confirmación de correo electrónico",
         text: `${userCreate.name},Recientemente te has registrado en nuestra página Scouters. Si no has sido tú quien se ha registrado, por favor ignora este mensaje. Si has sido tú, por favor haz clic en el siguiente enlace para activar tu cuenta:  http://localhost:8000/users/confirm/${userCreate.confirmationToken} '`,

@@ -1,5 +1,9 @@
+
+
+
+
 import InformModel from '../models/InformModel.js';
-import PmetricsModel from '../models/PmetricsModel.js';
+import PmetricsModel from '../models/PMetricsModel.js';
 import PlayersModel from '../models/PlayersModel.js';
 
 // Obtener los datos de la colección "player-metrics"
@@ -13,111 +17,174 @@ export const getPlayerMetrics = async (req, res) => {
   }
 };
 
-// Calcular la media de habilidades y la MediaGlobal y almacenarlas en la colección "player-metrics"
+// Calcular la media de Media de calculatePlayerMetrics y la MediaGlobal y almacenarlas en la colección "player-metrics"
 export const calculatePlayerMetrics = async (id) => {
   try {
-    console.log(id);
-    const informs = await InformModel.find({PlayerId: id}); // Obtener todos los informes
-    console.log(informs)
-    const playerMetrics = {};
-    let totalMediaInforme = 0; // Variable para almacenar la suma de todas las MediaInforme
-    let totalInformes = 0; // Variable para almacenar el número total de informes
+    const informs = await InformModel.find({ PlayerId: id });
 
-    // Calcular la media de habilidades para cada jugador y la suma de todas las MediaInforme
+    const playerMetrics = {
+      SkillsPrincipales: {
+        ControlDelBalon: [],
+        Disparo: [],
+        Cabeza: [],
+        Asociacion: [],
+        PieDerecho: [],
+        PieIzquierdo: [],
+        PasesLargos: [],
+        Dribling: [],
+        Reflejos: [],
+        Centros: [],
+        mediaGlobalPrincipales: 0,
+        totalMediaInforme: 0,
+        informCount: 0,
+      },
+      SkillsTacticas: {
+        Anticipacion: [],
+        Colocacion: [],
+        Concentracion: [],
+        Contundencia: [],
+        Desdoble: [],
+        Desmarque: [],
+        Posicionamientos: [],
+        VisionDeJuego: [],
+        mediaGlobalTacticas: 0,
+        totalMediaInforme: 0,
+        informCount: 0,
+      },
+      SkillsFisicas: {
+        Agilidad: [],
+        Flexibilidad: [],
+        Fuerza: [],
+        Potencia: [],
+        Resistencia: [],
+        Salto: [],
+        Velocidad: [],
+        mediaGlobalFisicas: 0,
+        totalMediaInforme: 0,
+        informCount: 0,
+      },
+    };
+
+    let totalMediaInforme = 0;
+    let totalInformes = 0;
+
     informs.forEach((inform) => {
       const playerId = inform.PlayerId.toString();
-      const habilidades = inform.habilidades[0];
+      const skillsPrincipales = inform.SkillsPrincipales[0];
+      const skillsTacticas = inform.SkillsTacticas[0];
+      const skillsFisicas = inform.SkillsFisicas[0];
 
-      if (!playerMetrics[playerId]) {
-        playerMetrics[playerId] = {
-          Ofensiva: [],
-          Tecnica: [],
-          Movimiento: [],
-          Potencia: [],
-          Mentalidad: [],
-          Defensa: [],
-          totalMediaInforme: 0,
-          informCount: 0,
-        };
-      }
+      playerMetrics.SkillsPrincipales.ControlDelBalon.push(skillsPrincipales.ControlDelBalon);
+      playerMetrics.SkillsPrincipales.Disparo.push(skillsPrincipales.Disparo);
+      playerMetrics.SkillsPrincipales.Cabeza.push(skillsPrincipales.Cabeza);
+      playerMetrics.SkillsPrincipales.Asociacion.push(skillsPrincipales.Asociacion);
+      playerMetrics.SkillsPrincipales.PieDerecho.push(skillsPrincipales.PieDerecho);
+      playerMetrics.SkillsPrincipales.PieIzquierdo.push(skillsPrincipales.PieIzquierdo);
+      playerMetrics.SkillsPrincipales.PasesLargos.push(skillsPrincipales.PasesLargos);
+      playerMetrics.SkillsPrincipales.Dribling.push(skillsPrincipales.Dribling);
+      playerMetrics.SkillsPrincipales.Reflejos.push(skillsPrincipales.Reflejos);
+      playerMetrics.SkillsPrincipales.Centros.push(skillsPrincipales.Centros);
 
-      playerMetrics[playerId].Ofensiva.push(habilidades.Ofensiva);
-      playerMetrics[playerId].Tecnica.push(habilidades.Tecnica);
-      playerMetrics[playerId].Movimiento.push(habilidades.Movimiento);
-      playerMetrics[playerId].Potencia.push(habilidades.Potencia);
-      playerMetrics[playerId].Mentalidad.push(habilidades.Mentalidad);
-      playerMetrics[playerId].Defensa.push(habilidades.Defensa);
+      playerMetrics.SkillsTacticas.Anticipacion.push(skillsTacticas.Anticipacion);
+      playerMetrics.SkillsTacticas.Colocacion.push(skillsTacticas.Colocacion);
+      playerMetrics.SkillsTacticas.Concentracion.push(skillsTacticas.Concentracion);
+      playerMetrics.SkillsTacticas.Contundencia.push(skillsTacticas.Contundencia);
+      playerMetrics.SkillsTacticas.Desdoble.push(skillsTacticas.Desdoble);
+      playerMetrics.SkillsTacticas.Desmarque.push(skillsTacticas.Desmarque);
+      playerMetrics.SkillsTacticas.Posicionamientos.push(skillsTacticas.Posicionamientos);
+      playerMetrics.SkillsTacticas.VisionDeJuego.push(skillsTacticas.VisionDeJuego);
 
-      playerMetrics[playerId].totalMediaInforme += inform.MediaInforme;
-        // playerMetrics[playerId].totalMediaInforme = playerMetrics[playerId].totalMediaInforme + inform.MediaInforme;
-      playerMetrics[playerId].informCount++;
+      playerMetrics.SkillsFisicas.Agilidad.push(skillsFisicas.Agilidad);
+      playerMetrics.SkillsFisicas.Flexibilidad.push(skillsFisicas.Flexibilidad);
+      playerMetrics.SkillsFisicas.Fuerza.push(skillsFisicas.Fuerza);
+      playerMetrics.SkillsFisicas.Potencia.push(skillsFisicas.Potencia);
+      playerMetrics.SkillsFisicas.Resistencia.push(skillsFisicas.Resistencia);
+      playerMetrics.SkillsFisicas.Salto.push(skillsFisicas.Salto);
+      playerMetrics.SkillsFisicas.Velocidad.push(skillsFisicas.Velocidad);
+
+      playerMetrics.SkillsPrincipales.totalMediaInforme += inform.MediaInforme;
+      playerMetrics.SkillsPrincipales.informCount++;
+      playerMetrics.SkillsTacticas.totalMediaInforme += inform.MediaInforme;
+      playerMetrics.SkillsTacticas.informCount++;
+      playerMetrics.SkillsFisicas.totalMediaInforme += inform.MediaInforme;
+      playerMetrics.SkillsFisicas.informCount++;
+
       totalMediaInforme += inform.MediaInforme;
       totalInformes++;
     });
+    let nprincipales
+    let nfisicas
+    let ntacticas
+    let contador = 0;
 
-    // Calcular la media de habilidades para cada jugador y actualizar la MediaGlobal
-    for (let playerId in playerMetrics) {
-      const playerMetric = playerMetrics[playerId];
+    for (let metricType in playerMetrics) {
+      const metric = playerMetrics[metricType];
+      const playerId = id.toString();
 
-      const mediaOfensiva = calculateAverage(playerMetric.Ofensiva);
-      const mediaTecnica = calculateAverage(playerMetric.Tecnica);
-      const mediaMovimiento = calculateAverage(playerMetric.Movimiento);
-      const mediaPotencia = calculateAverage(playerMetric.Potencia);
-      const mediaMentalidad = calculateAverage(playerMetric.Mentalidad);
-      const mediaDefensa = calculateAverage(playerMetric.Defensa);
-      const mediaGlobal = playerMetric.informCount > 0
-        ? playerMetric.totalMediaInforme / playerMetric.informCount
-        : 0;
+      const mediaValues = Object.keys(metric).reduce((averageValues, skill) => {
+        if (Array.isArray(metric[skill])) {
+          averageValues[skill] = calculateAverage(metric[skill]);
+        }
+        return averageValues;
+      }, {});
+      // console.log("Hola")
+      // console.log(mediaValues)
+      const valuesArray = Object.values(mediaValues);
 
+      let m = 0;
+      let contm = 0;
+      valuesArray.forEach(Value => {
+        m = m + Value
+        contm++
+      });
+      m = m / contm
+      if (contador == 0) {
+        nprincipales = m
+      }
+      if (contador == 1) {
+        ntacticas = m
+      } if (contador == 2) {
+        nfisicas = m
+      }
+      contador++
+
+      const mediaGlobal = metric.informCount > 0 ? metric.totalMediaInforme / metric.informCount : 0;
+      mediaValues.mediaGlobal = m;
       const existingPlayerMetric = await PmetricsModel.findOne({ PlayerId: playerId });
 
       if (existingPlayerMetric) {
-        // Actualizar el documento existente con los nuevos valores
-        existingPlayerMetric.Ofensiva = mediaOfensiva;
-        existingPlayerMetric.Tecnica = mediaTecnica;
-        existingPlayerMetric.Movimiento = mediaMovimiento;
-        existingPlayerMetric.Potencia = mediaPotencia;
-        existingPlayerMetric.Mentalidad = mediaMentalidad;
-        existingPlayerMetric.Defensa = mediaDefensa;
+        existingPlayerMetric[metricType] = mediaValues;
         existingPlayerMetric.mediaGlobal = mediaGlobal;
         await existingPlayerMetric.save();
       } else {
-        // Crear un nuevo documento si no existe uno con el mismo PlayerId
         const newPlayerMetric = new PmetricsModel({
           PlayerId: playerId,
-          Ofensiva: mediaOfensiva,
-          Tecnica: mediaTecnica,
-          Movimiento: mediaMovimiento,
-          Potencia: mediaPotencia,
-          Mentalidad: mediaMentalidad,
-          Defensa: mediaDefensa,
+          [metricType]: mediaValues,
           mediaGlobal: mediaGlobal,
         });
-
+        console.log("Estoy aqui")
+        console.log(newPlayerMetric)
         await newPlayerMetric.save();
       }
     }
+    // console.log("Estoy aqui")
+    // console.log(nprincipales)
+    // console.log(nfisicas)
+    // console.log(ntacticas)
+    const globalMediaGlobal = totalInformes > 0 ? totalMediaInforme / totalInformes : 0;
 
-    // Calcular el rating de jugador
-    const globalMediaGlobal = totalInformes > 0
-      ? totalMediaInforme / totalInformes
-      : 0;
-    
-    console.log(globalMediaGlobal);
-
-    // Actualizar el campo Rating de todos los jugadores en la colección Players
-    // await PlayersModel.updateOne({id: id}, { Rating: globalMediaGlobal });
-    
     try {
-      const MetricUpdated = await PlayersModel.updateOne({_id: id}, { Rating: globalMediaGlobal });
-      console.log(MetricUpdated)
+      const metricUpdated = await PlayersModel.updateOne({ _id: id }, { Rating: globalMediaGlobal });
+      const globalmed = await PmetricsModel.updateOne({ PlayerId: id },
+        {
+          mediaGlobal: globalMediaGlobal,
+        })
+      // console.log(metricUpdated);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
 
     console.log('Cálculo de métricas de jugador completado');
-
-    // ... puedes realizar otras acciones o retornar algún valor si es necesario
   } catch (error) {
     console.error('Error al calcular las métricas de jugador:', error);
   }
@@ -129,7 +196,3 @@ const calculateAverage = (array) => {
   const average = sum / array.length;
   return isNaN(average) ? 0 : average;
 };
-
-
-
-

@@ -1,4 +1,10 @@
-/* :root {
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap");
+
+
+/* COLORES DEL PROYECTO */
+:root {
   --verde: #C7F55C;
   --gris: #36404C;
   --gris-ceniza: #292E3A;
@@ -6,19 +12,16 @@
   --oscuro: #201e1f;
 }
 
-*{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
 
 .interfaz-nuevos-jugadores-container {
   background-image: url('./img/EntrenadorFutbol.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  position: absolute;
-  min-height: 100vh;
+  background-position: center top;
+  min-height: calc(100vh - 20px); /* Ajusta el valor del margen superior (20px) para dejar el espacio deseado */
+  padding-top: 20px; /* Ajusta el valor del padding superior según tus necesidades */
 }
+
 
 .interfaz-nuevos-jugadores-container::before {
   content: "";
@@ -27,37 +30,64 @@
   left: 0;
   width: 100%;
   height: auto;
+  background-color: rgba(0, 0, 0, 0.79);
   z-index: -1;
 }
 
-.nuevo-footer-container {
-  flex-grow: 1;
+
+.newfooter-container {
+  flex-grow: 1; /* Permite que el contenido crezca para llenar el espacio disponible */
 }
 
-.main-nuevos-filtros-tarjetas {
+.main-filtros-Cards {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
   padding: 30px; 
-  position: relative;
 }
 
-.vertical-line {
-  width: 3px;
-  background-color: var(--verde);
-  height: 100vh;
-  margin-left: 50px;
-}
 
-.main-tarjetas {
+.main-Cards{
   margin-left: 0;
-  margin-top: 40px;
+  margin-top: 80px;
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   grid-gap: 20px;
+ 
 }
 
-.main-filtros-nuevos {
-  width: 400px;
-  position: static;
-} */
+
+
+
+.opcion-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.opcion-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  background-color: rgba(54, 64, 76, 0.30);
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 200;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Oswald';
+  text-transform: uppercase;
+}
+
+.opcion-button.active {
+  background-color: var(--verde);
+  color: var(--oscuro);
+  font-weight: 500;
+}
+

@@ -21,6 +21,9 @@
 }
 
 
+.header__menu-item.active {
+    color: var(--verde);
+  }
   
 
 .header__company {

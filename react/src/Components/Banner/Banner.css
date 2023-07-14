@@ -93,3 +93,105 @@
 .banner__button:hover {
     background-color: var(--claro);
 }
+
+
+
+
+
+/* M O D A L */
+
+
+.banner__modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Oswald';
+    
+  }
+  
+  .banner__modal-content {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 500px;
+  }
+  
+  .banner__modal-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    
+  }
+  
+  .banner__modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .banner__modal-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .banner__modal-actions button {
+    background-color: var(--gris);
+  }
+
+  .banner__modal-actions button:hover {
+    background-color: var(--verde);
+    color: var(--oscuro);
+  }
+  
+
+  .banner__modal-select {
+    margin-bottom: 1rem;
+  }
+  
+  .banner__modal-select label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    font-style: inherit;
+  }
+  
+  .banner__modal-select select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .banner__modal-file-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .banner__modal-file-label {
+    font-weight: 300;
+    margin-right: 0.5rem;
+  }
+  
+  .banner__modal-file-input input[type="file"] {
+    display: none;
+  }
+  
+  .banner__modal-file-input .banner__modal-file-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #efefef;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .banner__modal-file-input .banner__modal-file-button:hover {
+    background-color: #e2e2e2;
+  }
+  

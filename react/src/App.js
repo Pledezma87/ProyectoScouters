@@ -10,7 +10,7 @@ import { InterfazJugadores } from './Pages/InterfazJugadores/InterfazJugadores';
 import { Login } from './Pages/LoginYRegistro/Login';
 import { Registro } from './Pages/LoginYRegistro/Registro';
 import { InterfazInformes } from './Pages/InterfazInformes/InterfazInformes';
-
+import { NuevaFicha } from './Pages/NuevaFicha/NuevaFicha';
 
 export function App() {
 
@@ -24,6 +24,7 @@ export function App() {
         {/* <Route path='/error' element={<Error/>} /> */}
         <Route path='/registro' element={<Registro/>} />
         <Route path='/InterfazInformes' element={<InterfazInformes/>} /> 
+        <Route path='/NuevaFicha' element={<NuevaFicha/>} />
       </Routes>
     </BrowserRouter>
   );

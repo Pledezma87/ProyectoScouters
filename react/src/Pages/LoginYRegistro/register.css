@@ -8,8 +8,8 @@
   --oscuro: #201e1f;
 }
 
-/*Css Register */
-.register-container {
+/* CSS REGISTRO */
+.register-container2 { 
   display: flex;
   background-image: url(./img/2.jpg);
   background-repeat: no-repeat;
@@ -22,78 +22,80 @@
   text-align: center;
 }
 
-.HeaderRegister {
+.HeaderRegister2 {
   display: flex;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-color: rgba(37, 38, 40, 0.591);
-  /* font-size: xx-small; */
+  background-color: rgba(37, 38, 40, 0.979);
   height: 4rem;
   text-align: center;
   justify-content: center;
   align-items: center;
 }
 
-.headerTitle {
+.headerTitle2 {
   font-family: "Oswald";
   display: flex;
-  margin-top: 2rem;
   text-align: center;
+  margin: auto;
   color: #ffffff;
   font-weight: 200;
 }
 
-.formRegister {
+.formRegister2 {
   text-align: center;
-  background-color: rgba(54, 64, 76, 0.4);
-  height: 50rem;
-  margin-bottom: 15px;
+  background-color: rgba(54, 64, 76, 0.671);
+  height: 100%;
   width: 100%;
   border-radius: 2%;
+  margin: 0 auto;
 }
 
-.Account {
-  color: #ffffff;
+.Account_R {
+  color: #f7f3f3;
   text-align: center;
   display: flex;
   justify-content: center;
-  gap: 12px;
-  text-decoration: none;
-  margin-top: 27rem;
+  align-items: center;
+  gap: 25px;
+  margin-left: 25px;
+  margin-top: 5px;
 }
-/* .inputNif {
-} */
-.link {
+.linkToLogin {
   text-decoration: none;
-  color: #ffffff;
-  font-size: 14px;
-  margin-top: 7rem;
+  color: #f7f3f3;
 }
 
-.register-text {
+.register-text2 {
   color: #ffffff;
   margin-bottom: 5px;
   text-align: center;
   height: 10rem;
 }
 
-.inputBox span {
-  position: absolute;
-  left: 0;
-  padding-left: 4rem;
-  pointer-events: none;
-  font-size: 1em;
-  transition: 0.4s cubic-bezier(0.05, 0.81, 0, 0.93);
-  color: #a8a4a4;
-  letter-spacing: 0.1em;
-}
-
-.MuiButton-root:active {
+.MuiButton-root2:active {
   transform: translate(0.05em, 0.05em);
   box-shadow: 0.05em 0.05em #000000;
   transform: scale(0.97);
 }
-/*Fin Css Register */
+
+#demo-radio-buttons-group-label {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*Css Login */
 .login-container {
@@ -278,10 +280,12 @@
 
 /* Media query Register-Login-Error*/
 @media (min-width: 760px) {
-  .formRegister {
-    width: 46rem;
-    height: 52em;
+
+  .formRegister2 {
+    width: 48rem;
+    height: 45em;
   }
+
   .Account {
     margin-top: 24rem;
   }

@@ -29,7 +29,7 @@ export const Login = () => {
         setShowLoader(true);
 
         setTimeout(() => {
-          navigate("/cuenta", {
+          navigate("/InterfazJugadores", {
             replace: true,
           });
         }, 3500);

@@ -16,7 +16,7 @@ export function Banner2() {
         <h2 className="banner__text">INFORMES REALIZADOS</h2>
       </div>
       <div className="banner__right">
-        <Link to="#" className="banner__button">
+        <Link to="/NuevaFicha" className="banner__button">
           <Icon component={PersonAddIcon} className="banner__button-icon" />
           Nueva Ficha
         </Link>

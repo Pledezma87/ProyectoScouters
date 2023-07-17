@@ -224,7 +224,7 @@ export function Registro() {
               }}
             />
           </Grid>
-          <Grid item xs={6} sm={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               id="nif"
               label="NIF"
@@ -235,12 +235,17 @@ export function Registro() {
               onChange={(event) => setNif(event.target.value)}
               InputProps={{ style: inputStyle }}
             />
-            {/* <input
+            <input
               className="inputNif"
               accept="image/*"
               id="dni-file"
               type="file"
-            /> */}
+            />
+            <label htmlFor="dni-file">
+              <Button style={{ color: "#C7F55C" }} component="span">
+                Adjuntar NIF
+              </Button>
+            </label>
           </Grid>
           <Grid item xs={6} sm={6}>
             <TextField

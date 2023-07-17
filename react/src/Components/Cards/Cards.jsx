@@ -28,7 +28,7 @@ export function Cards() {
           </div>
 
           <div className="button-container">
-            <Link to="#">
+            <Link to="/FichaJugador">
               <button className="rompedor-button">Ficha Técnica</button>
             </Link>
           </div>

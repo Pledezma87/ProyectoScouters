@@ -29,7 +29,6 @@ export function App() {
         <Route path='/InterfazInformes' element={<InterfazInformes/>} /> 
         <Route path='/NuevaFicha' element={<NuevaFicha/>} />
         <Route path='/FichaJugador' element={<FichaJugador/>} />
-
       </Routes>
     </BrowserRouter>
   );

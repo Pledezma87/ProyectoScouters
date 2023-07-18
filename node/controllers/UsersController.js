@@ -155,7 +155,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import nodemailer from "nodemailer";
-const PWD_REGEX = /^(?=.[A-Z])(?=.[0-9])(?=.*[!@#$%]).{8,60}$/;
+const PWD_REGEX = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,60}$/;
 
 export const registerUser = async (req, res) => {
   try {
@@ -259,8 +259,8 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const existingUser = await User.findOne({ email });
+    const { name, email, password } = req.body;
+    const existingUser = await User.findOne({ name });
 
     if (!existingUser) {
       return res.status(400).json({ message: "Email o contraseña incorrecta" });

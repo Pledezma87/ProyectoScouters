@@ -1,0 +1,7 @@
+.global-container {
+    background-image: url('./img/Campo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 100vh;
+}

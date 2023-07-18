@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../../AuthContext/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import { AuthContext } from "../../AuthContext/AuthContext.js";
@@ -7,10 +8,11 @@ import { Button, TextField, Grid } from "@material-ui/core";
 import { useMediaQuery } from "@material-ui/core";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
+  const { username,setUsername } = useContext(AuthContext);
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  // const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   const matches = useMediaQuery("(min-width:600px)");
 
@@ -21,7 +23,7 @@ export const Login = () => {
 
     try {
       const response = await axios.post("http://localhost:8000/users/login", {
-        email,
+        name,
         password,
       });
 
@@ -33,6 +35,8 @@ export const Login = () => {
             replace: true,
           });
         }, 3500);
+        setUsername(name)
+        login()
       } else {
       }
     } catch (error) {
@@ -85,11 +89,11 @@ export const Login = () => {
         >
           <Grid item xs={12} sm={12} md={12} lg={8}>
             <TextField
-              label="Email"
+              label="Name"
               variant="outlined"
               fullWidth
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              value={name}
+              onChange={(event) => setName(event.target.value)}
               InputProps={{ style: inputStyle }}
             />
           </Grid>

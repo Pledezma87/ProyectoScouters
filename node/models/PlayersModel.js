@@ -6,6 +6,7 @@ const PlayerSchema = new Schema(
   {
     Nombre: { type: String, required: true },
     Apellidos: { type: String, required: true },
+    Avatar: {type: String, default:'default.png'},
     Estatura: { type: Number, required: true },
     Edad: { type: Number, required: true },
     Nacionalidad: { type: String, required: true },

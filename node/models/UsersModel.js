@@ -93,7 +93,7 @@
 import mongoose from "mongoose";
 
 const USER_REGEX = /^[a-zA-Z]+$/;
-const PWD_REGEX = /^(?=.[A-Z])(?=.[0-9])(?=.*[!@#$%]).{8,60}$/;
+const PWD_REGEX = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,60}$/;
 
 
 const userSchema = new mongoose.Schema({

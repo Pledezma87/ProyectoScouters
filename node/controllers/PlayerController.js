@@ -1,5 +1,7 @@
 import InformModel from '../models/InformModel.js';
 import PlayersModel from '../models/PlayersModel.js';
+import  path  from 'path';
+import fs from 'fs';
 
 // Definir métodos para el CRUD 
 
@@ -77,3 +79,28 @@ export const deletePlayer = async (req, res) => {
     res.json({ message: error.message })
   }
 }
+
+
+// Consumir foto-avatar
+
+export const avatar = (req, res) => {
+  //sacar el parametro de la url
+  const file = req.params.file;
+
+  // montar el path real de la imagen
+
+  const filepath = "./uploads/jugador/" + file;
+
+  //comprobar que existe la imagen
+
+  fs.stat(filepath, (error, exists) => {
+    if (!exists)
+      return res.status(404).send({
+        status: "error",
+        message: "no existe la imagen",
+      });
+
+    //devolver file
+    return res.sendFile(path.resolve(filepath));
+  });
+};

@@ -9,17 +9,24 @@
     --claro: #FFFFFF;
     --oscuro: #201e1f;
   }
-  .container {
+  .container-card-main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: auto;
-    width: auto;
+    width: 100%;
+    gap:20px;
+  
+    
   }
+
+ 
+  
   
   .card {
-    width: 80%;
-    margin-bottom: 20px;
+    width: 70%;
+    margin-left: 20px;
+    margin-top: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: rgba(112, 112, 112, 0.3);
@@ -27,6 +34,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+   
   }
   
   .card-main {
@@ -49,6 +57,7 @@
   }
   
   .card-image {
+   
     width: 100%;
     height: 100%;
     object-fit: cover;

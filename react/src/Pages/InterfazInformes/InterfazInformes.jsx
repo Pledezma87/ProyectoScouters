@@ -70,11 +70,6 @@ export function InterfazInformes() {
           </div>
           <div className='main-Cards'>
             <InformCards />
-            <InformCards />
-            <InformCards />
-            <InformCards />
-            <InformCards />
-            <InformCards />
           </div>
           <div className='main-ordenar'>
             <OrdenarPor onOrdenarPor={handleOrdenarPor} />

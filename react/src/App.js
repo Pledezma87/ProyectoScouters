@@ -1,8 +1,5 @@
 import React from 'react';
 import './App.css';
-// import Registro from './Components/registro_y_login/Registro';
-// import Login from './Components/registro_y_login/Login';
-// import RadarChart from './Components/Metricas/RadarChart';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import {Landing} from './Pages/Landing/Landing'
 import { AvisoLegal } from './Pages/AvisoLegal/AvisoLegal';
@@ -13,6 +10,8 @@ import { InterfazInformes } from './Pages/InterfazInformes/InterfazInformes';
 import { NuevaFicha } from './Pages/NuevaFicha/NuevaFicha';
 import { FichaJugador } from './Pages/FichaJugador/FichaJugador';
 import { TokenExpirado } from './Pages/LoginYRegistro/TokenExpirado';
+import { InformeJugador } from './Pages/InformeJugador/Informe';
+
 
 
 export function App() {
@@ -29,6 +28,7 @@ export function App() {
         <Route path='/InterfazInformes' element={<InterfazInformes/>} /> 
         <Route path='/NuevaFicha' element={<NuevaFicha/>} />
         <Route path='/FichaJugador' element={<FichaJugador/>} />
+        <Route path='/Informe' element={<InformeJugador/>} />
       </Routes>
     </BrowserRouter>
   );

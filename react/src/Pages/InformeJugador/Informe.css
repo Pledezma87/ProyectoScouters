@@ -1,0 +1,245 @@
+:root {
+    --verde: #c7f55c;
+    --gris: #36404c;
+    --gris-ceniza: #292e3a;
+    --claro: #ffffff;
+    --oscuro: #201e1f;
+}
+
+.informe-container-jugador {
+    background-image: url("./img/bg-informejugador.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    font-family: "Oswald", sans-serif;
+    color: var(--claro);
+
+}
+
+.header_close1 {
+    content: "";
+    display: flex;
+    position: absolute;
+    width: 250px;
+    height: 100px;
+    background-color: var(--verde);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.informe-close-icon {
+    transform: scale(2);
+    pointer-events: none;
+    color: var(--oscuro);
+}
+
+
+.header_nav1 {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: large;
+}
+
+.nav_menu-item1 {
+    color: var(--claro);
+    text-decoration: none; 
+    /* cursor: pointer;
+    background-color: blue; */
+}
+
+.informeOjeador1 {
+    text-transform: uppercase;
+    color: var(--claro);
+    text-align: center;
+    font-size: 20px;
+    font-style: x-large;
+    background-color: #36404c90;
+    letter-spacing: 5px;
+    padding-bottom: 20px;
+
+}
+
+.informeOjeador1 h1 {
+    padding-top: 20px;
+}
+
+.horizontal-line1 {
+    z-index: 2;
+    width: 210vh;
+    /* Ancho de la línea */
+    margin-top: 30px;
+    background-color: var(--claro);
+    /* Color de la línea */
+    margin-left: 30px;
+}
+
+/* Codigo para informe */
+.separador {
+    border-right: 2px solid #c7f55c;
+}
+
+.separadorskill {
+    border-bottom: 2px solid #c7f55c;
+}
+
+.separadorskill2 {
+    border-bottom: 2px light #c7f55c;
+}
+
+.separadorskilldos {
+    border-bottom: 5px solid #c7f55c;
+}
+
+.maincontainer1 {
+    display: flex;
+    flex-direction: column;
+    background-color: #36404c90;
+    width: 738px;
+    margin: auto;
+    text-align: center;
+    border-bottom: 2px light #c7f55c;
+}
+
+.informe-fecha1 {
+    display: flex;
+    flex-direction: column;
+    background-color: #36404c67;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+
+.descripcion-partido {
+    justify-content: space-around;
+}
+
+.descripcion-partidoPartido {
+    justify-content: center;
+}
+
+.informe-fecha p {
+    text-align: center;
+}
+
+.imagen-nombre {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #c7f55c7e;
+    padding: 5px;
+}
+
+.fotojugador img {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.infojugador1 {
+    padding-left: 30px;
+}
+
+.infofoto {
+    /* border: 1px solid #ccc; */
+    padding-left: 50px;
+}
+
+.nombrejugador1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Cambiar "center" a "flex-start" para alinear a la izquierda */
+    text-align: center;
+    /* Agregar esta línea para centrar el texto horizontalmente */
+}
+
+.nombrejugador1 h1:first-child {
+    margin: 0;
+    color: #FFF;
+    font-family: Oswald;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    /* 64px */
+    letter-spacing: 4.48px;
+}
+
+.posicion-pierna {
+    display: flex;
+    flex-direction: row;
+    /* Updated: change to column to align items vertically */
+    align-items: center;
+    /* Updated: align items to the center */
+    gap: 15px;
+}
+
+
+h3 {
+    padding-right: 18px;
+}
+
+
+.descripcion-partido {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.partido {
+    display: flex;
+    flex-direction: column;
+}
+
+.promedio {
+    display: flex;
+    flex-direction: column;
+}
+
+.ant.eval {
+    display: flex;
+    flex-direction: column;
+}
+
+.fecha {
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-select {
+    border-bottom: #c7f55c;
+}
+
+.mainskills {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.skillname {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+}
+
+.skill {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 0.1px solid #c7f55c;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.anotaciones-container {
+    padding-top: 10px;
+}

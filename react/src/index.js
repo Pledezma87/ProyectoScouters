@@ -5,6 +5,8 @@ import './index.css';
 import { AuthProvider } from './AuthContext/AuthContext';
 import { Context } from './Context/Context';
 
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

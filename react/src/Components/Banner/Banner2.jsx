@@ -323,9 +323,12 @@ export function Banner2() {
                 <Button variant="contained" onClick={handleReportModalClose}>
                   Cancelar
                 </Button>
+                
+              <Link to="/Informe">
                 <Button variant="contained" color="primary">
                   Aceptar
                 </Button>
+              </Link>  
               </div>
 
             </Box>

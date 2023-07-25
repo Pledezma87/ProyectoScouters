@@ -1,5 +1,6 @@
 import InformModel from '../models/InformModel.js';
 import PlayersModel from '../models/PlayersModel.js';
+import PmetricsModel from '../models/PMetricsModel.js';
 import  path  from 'path';
 import fs from 'fs';
 
@@ -35,10 +36,11 @@ export const getAllPlayers = async (req, res) => {
     const playersWithReports = [];
 
     for (const player of players) {
-      const informes = await InformModel.find({ PlayerId: player._id });
+      const informes = await PmetricsModel.find({ PlayerId: player._id });
+      console.log(informes);
       const jugadorConInformes = {
         jugador: player,
-        informes: informes
+        PMetrics: informes
       };
       playersWithReports.push(jugadorConInformes);
     }

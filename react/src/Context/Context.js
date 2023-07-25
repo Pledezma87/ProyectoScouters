@@ -4,6 +4,22 @@ import axios from "axios";
 export const PlayersContext = createContext();
 export const InformsContext = createContext();
 
+
+// Función para obtener la posición abreviada del jugador (DC, DEF, MC...)
+function getAbreviacionPosicion(posicion) {
+  switch (posicion) {
+    case 'Delantero':
+      return 'DC';
+    case 'Defensa':
+      return 'DEF';
+    case 'Mediocentro':
+      return 'MC';
+    default:
+      return posicion; // Devolvemos la posición sin cambios si no coincide con las opciones anteriores
+  }
+}
+
+
 export function Context({ children }) {
   const [data, setData] = useState([]);
   const [informsData, setInformsData] = useState([]);
@@ -29,7 +45,7 @@ export function Context({ children }) {
   console.log(informsData); // Verificar el estado de informsData
 
   return (
-    <PlayersContext.Provider value={{ data, setData }}>
+    <PlayersContext.Provider value={{ data, setData, getAbreviacionPosicion }}>
       <InformsContext.Provider value={{ informsData, setInformsData }}>
         {children}
       </InformsContext.Provider>

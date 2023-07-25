@@ -69,7 +69,7 @@ export function InterfazInformes() {
             </button>
           </div>
           <div className='main-Cards'>
-            <InformCards />
+            <InformCards /> 
           </div>
           <div className='main-ordenar'>
             <OrdenarPor onOrdenarPor={handleOrdenarPor} />

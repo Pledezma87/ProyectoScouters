@@ -14,10 +14,8 @@ export function FichaJugador() {
             <div className='interfaz-container'>
             <BannerFicha/>                                {/* AQUI VA EL BANNER 3 */}
                 <div className='main-info'>
-
                 </div>
-            </div>
-           
+            </div>           
         </div>
         <Footer />
         </>

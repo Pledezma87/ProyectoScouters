@@ -20,7 +20,6 @@ export function InformCards() {
         console.log("informs:", informs);
 
 
-
         // Obtener la fecha en formato de objeto Date
         const fechaInforme = new Date(informs.Created_At);
 

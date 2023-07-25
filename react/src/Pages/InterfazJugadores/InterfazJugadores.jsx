@@ -20,8 +20,8 @@ export function InterfazJugadores() {
       <div className='main-filters-cards'>
         <div className='main-filters'><Filters/></div>
         <div className='vertical-line'></div> {/* División vertical */}
-        <div className='main-cards'> <Cards/> </div>
-        <div className='main-ordenar'><OrdenarPor onOrdenarPor={handleOrdenarPor} /> {/* Pasa la función onOrdenarPor como prop */}</div>
+        <div className='main-cards'> <Cards/> </div>        
+        <div className='main-ordenar'><OrdenarPor tipo="Jugadores" onOrdenarPor={handleOrdenarPor} /> {/* Pasa la función onOrdenarPor como prop */}</div>
       </div>
    </div>
    <Footer className="footer"/>

@@ -88,3 +88,9 @@
   font-weight: 500;
 }
 
+.informes-count {
+  color: #d82020; /* Cambia el color a tu preferencia */
+  font-size: 15px; /* Cambia el tamaño de fuente a tu preferencia */
+  font-weight: 600; /* Opcional: cambia el peso de la fuente a tu preferencia */
+  margin-left: 2px; 
+}

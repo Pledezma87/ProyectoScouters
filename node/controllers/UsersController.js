@@ -56,11 +56,7 @@ export const registerUser = async (req, res) => {
     console.log(userCreate);
 
     if (userCreate) {
-      // const token = uuidv4();
-      // console.log("Token:", token);
-      // userCreate.confirmationToken = token
-
-      // await userCreate.save();
+   
       const token = jwt.sign(
         { userId: userCreate._id, username: userCreate.name },
         "jswtoken"
@@ -82,8 +78,13 @@ export const registerUser = async (req, res) => {
         from: "Scouters_Es@outlook.es",
         to: userCreate.email,
         subject: "Confirmación de correo electrónico",
-        html: `<p>${userCreate.name},Recientemente te has registrado en nuestra página Scouters. Si no has sido tú quien se ha registrado, por favor ignora este mensaje. Si has sido tú, por favor haz clic en el siguiente enlace para activar tu cuenta: 
-        <a href= "http://localhost:8000/users/confirm/${userCreate.confirmationToken}">Confirmation_Scouters</a> </p>`,
+        html: `<div style="height: 60vh; background-image: url('https://images.unsplash.com/photo-1590179406383-a8e59a4ff117?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover;">
+        <p style="background-color: rgba(0, 0, 0, 0.7); color: white; font-size: 16px; padding: 40px; width: 90%; margin-left: 10px; margin-top: 25px; text-align: justify;">
+        ${userCreate.name}, Recientemente te has registrado en nuestra página Scouters. Si no has sido tú quien se ha registrado, por favor ignora este mensaje. Si has sido tú, por favor haz clic en el siguiente enlace para activar tu cuenta: <a href="http://localhost:8000/users/confirm/${userCreate.confirmationToken}" style="color: #007bff; text-decoration: none;">Confirmation_Scouters</a>
+      </p>
+      </div>`,
+      
+        
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -108,7 +109,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   try {
     const {name, email, password } = req.body;
-    const existingUser = await User.findOne({ name });//cabiar aqui el name en vez de email porqu si no no deja logear
+    const existingUser = await User.findOne({ name });
 
     if (!existingUser) {
       return res.status(400).json({ message: "Usuario o contraseña incorrecta" });
@@ -190,11 +191,81 @@ export const sendEmailWithNewToken = async (email, token) => {
       from: "Scouters_Es@outlook.es", // Remitente del correo electrónico
       to: email,
       subject: "Nuevo token de confirmación",
-      html: `<p>Aquí está tu nuevo token de confirmación: <a href="http://localhost:8000/users/confirm/${token}">Confirmation_Scouters</a></p>`,
+      html: `<div style="height: 60vh; background-image: url('https://images.unsplash.com/photo-1590179406383-a8e59a4ff117?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover;">
+      <p style="font-size: 16px; color: white; margin-left: 20px; margin-top: 30px; padding: 20px;">
+        Aquí está tu nuevo token de confirmación: <a href="http://localhost:8000/users/confirm/${token}" style="color: #007bff; text-decoration: none;">Confirmation_Scouters</a>
+      </p>
+    </div>
+    `,
     };
+    
 
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error("Error al enviar el correo electrónico:", error);
   }
 };
+
+
+
+// RESET PASSWORD
+export const resetPassword = async (req, res) => {
+  try {
+    const { token } = req.params; // Obtén el token desde los parámetros de la URL
+    const { email, newPassword } = req.body;
+
+    // Busca al usuario por el email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Email no encontrado" });
+    }
+
+    // Actualiza la contraseña del usuario con la nueva contraseña elegida por el usuario
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    user.password = hashedPassword;
+    await user.save();
+
+    // Envía el correo de confirmación
+    await sendPasswordChangeConfirmation(email);
+
+    return res.status(200).json({ message: "Contraseña restablecida exitosamente" });
+  } catch (error) {
+    console.error("Error al restablecer la contraseña:", error);
+    return res.status(500).json({ message: "Error al restablecer la contraseña" });
+  }
+};
+
+
+
+const  sendPasswordChangeConfirmation = async (email, ) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "hotmail",
+      auth: {
+        user: "Scouters_Es@outlook.es", // Reemplaza con tu dirección de correo electrónico de Outlook
+        pass: "cualquiercosa12345", // Reemplaza con tu contraseña de Outlook
+      },
+    });
+
+    const mailOptions = {
+      from: "Scouters_Es@outlook.es", // Remitente del correo electrónico
+      to: email,
+      subject: "Has cambiado tu contraseña",
+      html: `<div style="height: 60vh; background-image: url('https://images.unsplash.com/photo-1590179406383-a8e59a4ff117?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover;">
+      <p style="font-size: 16px; color: white; margin-left: 20px; margin-top: 30px; padding: 20px;">
+        Ya puedes acceder con tu nueva contraseña pincha en este enlace: <a href="http://localhost:3000/login" style="color: #007bff; text-decoration: none;">Confirmation_ChangePassword</a>
+      </p>
+    </div>
+    `,
+    };
+    
+
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error("Error al enviar el correo electrónico:", error);
+  }
+};
+
+

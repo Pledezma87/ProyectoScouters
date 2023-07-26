@@ -5,3 +5,156 @@
     position: relative;
     min-height: 100vh;
 }
+
+.interfaz-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+ /* CONTAINER TUS INFORMES */
+
+.main-info {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Oswald';
+    align-items: center;
+    margin-top: 3rem;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 846px;
+    margin-left: 520px;
+}
+
+.tus-informes-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 846px;
+    height: 107px;
+
+}
+
+.tus-informes {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: 1.12px;
+
+}
+
+.tus-informes-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+
+}
+
+.evaluacion-promedio span{
+    color: #36FF4A;
+}
+
+.tus-informes-data p {
+   font-weight: 200;
+}
+
+.tus-informes-data span {
+    font-size: 20px;
+    font-weight: 500;
+ }
+
+
+.ficha-divider-horizontal {
+    border-top: 1px solid #C7F55C;
+    margin: 3px;
+  }
+
+  .ficha-divider-vertical {
+    border-left: 1px solid #C7F55C;
+    height: 100%;
+    margin: 0 10px;
+  }
+  
+
+  /* CONTAINER INFO */
+  .new-main-info {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Oswald';
+    align-items: center;
+    margin-top: 3rem;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 500px; /* Nuevo ancho del contenedor */
+    margin: 3rem auto; /* Centrar horizontal y verticalmente */
+}
+
+.new-tus-informes-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%; /* Ancho completo del contenedor */
+    height: 107px;
+}
+
+.new-tus-informes {
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: white;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 100%;
+    letter-spacing: 1.12px;
+}
+
+.new-tus-informes-data {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.new-tus-informes-data p {
+    font-weight: 200;
+}
+
+.new-tus-informes-data span {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.new-ficha-divider-horizontal {
+    border-top: 1px solid #C7F55C;
+    margin: 3px;
+}
+
+.new-ficha-divider-vertical {
+    border-left: 1px solid #C7F55C;
+    height: 100%;
+    margin: 0 10px;
+}
+
+
+
+
+
+
+
+
+  .grafica{
+    color: white;
+    margin: auto;
+    margin-top: 100px;
+}

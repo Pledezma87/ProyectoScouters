@@ -114,9 +114,7 @@ export function InterfazInformes() {
           <div className='main-Cards'>
             <InformCards />
           </div>
-          <div className='main-ordenar'>
-            <OrdenarPor tipo="Informes" onOrdenarPor={handleOrdenarPor} />
-          </div>
+       
         </div>
       </div>
       <Footer className='footer' />

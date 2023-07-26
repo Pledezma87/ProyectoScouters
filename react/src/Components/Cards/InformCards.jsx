@@ -46,7 +46,7 @@ export function InformCards() {
 
               <div className='fecha-informe'>
                 <p>Fecha del Informe <span>{`${dia}/${mes}/${año}`}</span></p>
-                <p>Hizo un gran partido a gran a nivel general. Sin embargo...</p>
+                <p>{informs.Texto}</p>
               </div>
 
               <div className='divider'></div>

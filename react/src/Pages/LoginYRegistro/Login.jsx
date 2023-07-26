@@ -125,8 +125,13 @@ export const Login = () => {
         </Grid>
         <div className="loginContent">
           <span className="link1">¿ Aún no tienes cuenta?</span>
-          <Link to="/registro" className="link1">
+          <Link to="/formulario" className="link1">
             Registrate
+          </Link>
+        </div>
+        <div className="forgotPassword">
+          <Link to="/reset-password" className="link1-reset"  >
+          Olvidé mi contraseña
           </Link>
         </div>
       </form>

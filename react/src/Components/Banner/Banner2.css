@@ -96,14 +96,7 @@
 
 
 
-
-
-
-
-
 /* M O D A L */
-
-
 .banner__modal {
     display: flex;
     justify-content: center;
@@ -116,7 +109,8 @@
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 8px;
-    width: 500px;
+    width: auto;
+    max-width: 600px;
   }
   
   .banner__modal-title {
@@ -198,3 +192,164 @@
     background-color: #e2e2e2;
   }
   
+
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 15px;
+    user-select: none;
+  }
+
+  .banner2-foto-jugador{
+    width: 70%;
+    /* Ajusta el tamaño del marco según tus necesidades */
+    height: 70%;
+    border-radius: 50%;
+    /* Aplica un borde redondo */
+    overflow: hidden;
+    /* Oculta cualquier parte de la imagen que se extienda más allá del marco */
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+
+  
+  /* Contenedor del ckeck*/
+  .checkmark {
+    position: relative;
+    margin-top: 70px;
+    margin-left: 10px;
+    height: 1.3em;
+    width: 1.3em;
+    background: rgba(151, 149, 149, 0.905);
+    border-radius: 50px;
+    transition: all 0.7s;
+    --spread: 20px;
+  }
+  
+  /* Cambirl el color cuando está seleccionado */
+  .container input:checked ~ .checkmark {
+    background: black;
+    box-shadow: -10px -10px var(--spread) 0px #c7f55c, 0 -10px var(--spread) 0px  #c7f55c, 10px -10px var(--spread) 0px  #c7f55c, 10px 0 var(--spread) 0px  #c7f55c, 10px 10px var(--spread) 0px  #c7f55c, 0 10px var(--spread) 0px  #c7f55c, -10px 10px var(--spread) 0px  #c7f55c;
+  }
+  
+  /*Como se ve cuando no está seleccionado */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Como se ve cuand no está seleccionado  */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+    animation: checkmark 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  }
+  
+  /* Stilos del indicador del ckeck */
+  .container .checkmark:after {
+    left: 0.45em;
+    top: 0.25em;
+    width: 0.25em;
+    height: 0.5em;
+    border: solid #c7f55c;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+  }
+  
+  /*Animación */
+  @keyframes checkmark {
+    from {
+      transform: rotate(-45deg) scale(0);
+    }
+  
+    to {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+  
+  /* Stilo del label del check*/
+  .container span {
+    margin-left: 2em;
+    color: black;
+    font-weight: bold;
+  }
+  
+
+  input[type="checkbox"] {
+    display: none;
+  }
+  
+  label svg {
+    width: 44px;
+    height: 44px;
+    fill: none;
+    /* stroke: #000; */
+    stroke-width: 2px;
+  }
+  
+  input[type="checkbox"]:checked + label svg {
+    fill: #FFC107;
+    animation: pop_42 0.5s ease-out;
+  }
+  
+  @keyframes pop_42 {
+    0% {
+      transform: scale(1);
+    }
+  
+    50% {
+      transform: scale(1.5);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+
+
+
+/*    estrellas */
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  margin-top: 25px;
+  
+}
+
+.container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.container svg {
+  position: relative;
+  margin-top: 40px;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.3s;
+  fill: #ffeb49;
+}
+
+/* .container input:checked ~ svg {
+  fill: #ffeb49;
+} */
+

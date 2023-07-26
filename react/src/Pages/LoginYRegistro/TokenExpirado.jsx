@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Swal from "sweetalert2";
 import {
   Grid,
@@ -11,10 +11,16 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import "./register.css";
+
+
+
 
 export const TokenExpirado = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [name, setName] = useState('');
+ 
 
   const inputStyle = {
     backgroundColor: "rgba(255, 255, 255, 0.498)",
@@ -40,21 +46,22 @@ export const TokenExpirado = () => {
         setMessage("Nuevo token de confirmación generado");
         Swal.fire({
           icon: "success",
-          title: "Nuevo token de confirmación generado,verifique su correo",
-          timer: 10000,
+          title: "Nuevo enlace de confirmación generado,verifique su correo",
+          timer: 4500,
           toast: true,
           position: "top-end",
           showConfirmButton: false,
         });
+       
       } else {
         const errorData = await response.json();
         setMessage(
-          `Error al generar un nuevo token de confirmación: ${errorData.message}`
+          `Error al generar un nuevo enlace de confirmación: ${errorData.message}`
         );
         Swal.fire({
           icon: "error",
-          title: `Error al generar un nuevo token de confirmación: ${errorData.message}`,
-          timer: 10000,
+          title: `Error al generar un nuevo enlace de confirmación: ${errorData.message}`,
+          timer: 4500,
           toast: true,
           position: "top-end",
           showConfirmButton: false,
@@ -69,7 +76,7 @@ export const TokenExpirado = () => {
       Swal.fire({
         icon: "error",
         title: "Error al solicitar un nuevo token de confirmación",
-        timer: 10000,
+        timer: 4500,
         toast: true,
         position: "top-end",
         showConfirmButton: false,
@@ -78,11 +85,16 @@ export const TokenExpirado = () => {
   };
 
   return (
+    <>
+   
     <div className="tokenExpired">
+    <h1 className="h1">Tu enlace de confirmación ha expirado</h1>
       <form className="tokenExpiredForm" onSubmit={handleRequestNewToken}>
         <header className="HeadertokenExpired">
           <h1 className="TitleExpired">CONFIRMAR REGISTRO</h1>
+          <span></span>
         </header>
+       
         <Grid  className="tokenExpired-container"
           container
           spacing={2}
@@ -129,5 +141,6 @@ export const TokenExpirado = () => {
           </Grid>
       </form>
     </div>
+    </>
   );
 };

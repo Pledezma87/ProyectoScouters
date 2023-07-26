@@ -105,15 +105,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Oswald';
-    
+    font-family: 'Oswald'; 
   }
   
   .banner__modal-content {
     background-color: #ffffff;
-    padding: 2rem;
+    padding: 3rem;
     border-radius: 8px;
-    width: 500px;
+    width: 90%;
+    min-width: 600px;
   }
   
   .banner__modal-title {

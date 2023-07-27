@@ -41,6 +41,7 @@ export const getInform = async (req, res) => {
 //Crear un Informe
 export const createInform = async (req, res) => {
   try {
+    console.log("createinforme")
     console.log(req.body)
     const newInforme = await InformModel.create(req.body);
 

@@ -1,20 +1,27 @@
 import InformModel from '../models/InformModel.js';
 import PlayersModel from '../models/PlayersModel.js';
 import PmetricsModel from '../models/PMetricsModel.js';
-import  path  from 'path';
+import path from 'path';
 import fs from 'fs';
 
 // Definir métodos para el CRUD 
 
 // Crear una ficha
 export const createPlayer = async (req, res) => {
+  console.log("controlador-crear-jugador")
   try {
-    await PlayersModel.create(req.body)
-    res.status(200).json({
-      "message": "Ficha creada correctamente"
-    })
+
+    const newPlayer = await PlayersModel.create(req.body)
+    console.log(newPlayer)
+    if (newPlayer) {
+      res.status(200).json({
+        message: "Ficha creada correctamente",
+        newPlayer:newPlayer
+      })
+    }
   } catch (error) {
-    res.json({ message: error.message })
+    console.log(error)
+    // res.json({ message: error.message })
   }
 }
 
@@ -23,8 +30,8 @@ export const getPlayer = async (req, res) => {
   try {
     const id = req.params.id
     const player = await PlayersModel.findById({ _id: id })
-    const inform = await  InformModel.find({PlayerId: id})
-    res.json({ jugador: player,informes: inform })
+    const inform = await InformModel.find({ PlayerId: id })
+    res.json({ jugador: player, informes: inform })
   } catch (error) {
     res.json({ message: error.message })
   }

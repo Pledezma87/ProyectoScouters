@@ -12,7 +12,8 @@ const PlayerSchema = new Schema(
     Edad: { type: Number, required: true },
     Nacionalidad: { type: String, required: true },
     Posición: { type: String, required: true },
-    Club: { type: String, required: true },
+    PieBueno: { type: String, required: true },
+    Club: { type: String },
     Rating: { type: Number},
     Created_At: {type: Date, default: Date.now}
   },

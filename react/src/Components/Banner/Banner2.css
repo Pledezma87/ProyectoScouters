@@ -104,14 +104,14 @@
     font-family: 'Oswald';
     
   }
-  
+/*   
   .banner__modal-content {
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 8px;
-    width: auto;
-    max-width: 600px;
-  }
+    width: 90%;
+  
+  } */
   
   .banner__modal-title {
     margin-top: 0;
@@ -133,7 +133,7 @@
     display: flex;
     justify-content: space-around;
     gap: 1rem;
-    margin-top: 2rem;
+
   }
 
   .banner__modal-actions button {

@@ -12,6 +12,7 @@ import { FichaJugador } from './Pages/FichaJugador/FichaJugador';
 import {TokenExpirado} from './Pages/LoginYRegistro/TokenExpirado';
 import { InformeJugador } from './Pages/InformeJugador/Informe';
 import { PasswordReset } from './Pages/LoginYRegistro/PasswordReset';
+import { RadarChart } from './Components/Metricas/RadarChart';
 
 
 export function App() {
@@ -27,9 +28,10 @@ export function App() {
         <Route path='/registro' element={<Registro/>} />
         <Route path='/InterfazInformes' element={<InterfazInformes/>} /> 
         <Route path='/NuevaFicha' element={<NuevaFicha/>} />
-        <Route path='/FichaJugador' element={<FichaJugador/>} />
-        <Route path='/Informe' element={<InformeJugador/>} />
+        <Route path='/FichaJugador/:id' element={<FichaJugador/>} />
+        <Route path='/Informe/:id' element={<InformeJugador/>} />
         <Route path="/reset-password" element={<PasswordReset />} />
+        <Route path="/ruta" element={<RadarChart />} />
       </Routes>
     </BrowserRouter>
   );

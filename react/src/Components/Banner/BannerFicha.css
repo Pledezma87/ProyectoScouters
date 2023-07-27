@@ -112,7 +112,7 @@
 }
 
 .posicion {
-    width: 39px;
+    width: auto;
     height: 24px;
     flex-shrink: 0;
     color: #FFF;

@@ -1,0 +1,42 @@
+/* .radar{
+    width: 40%;
+}
+
+.cardRadar{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:20px
+}
+
+
+.fisicasRadar{
+    display: flex;
+}
+
+.principalesRadar{
+    display: flex;
+}
+
+
+.tacticasRadar{
+    display: flex;
+}
+.graficasSpan{
+
+    display: block; 
+    width: 15%;
+    background-color: #daa4a4; 
+    padding: 10px; 
+    border-radius: 20px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.h3Graficas{
+    text-decoration: underline;
+
+} */

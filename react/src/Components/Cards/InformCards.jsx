@@ -13,6 +13,11 @@ export function InformCards() {
   const { data, getAbreviacionPosicion } = useContext(PlayersContext)
   const backgroundImageUrl = jugadorImg;
 
+  // Verificar si data existe y es un array antes de llamar a map
+  if (!Array.isArray(data) || data.length === 0) {
+    return <div>No hay datos disponibles.</div>;
+  }
+
   return (
     <div className="nuevocontainer">
       {informsData.map((informs) => {

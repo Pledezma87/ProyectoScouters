@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { PlayersContext } from '../../Context/Context';
 import { Icon, Modal, TextField, Button, Select, MenuItem, Box, Typography, TableContainer, OutlinedInput, InputAdornment, Grid } from '@mui/material';
 import DescriptionIcon from '@mui/icons-material/Description';
 import AssignmentIcon from '@mui/icons-material/Assignment';
@@ -6,27 +7,56 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SearchIcon from '@mui/icons-material/Search'
 import './Banner2.css';
 import { Link } from 'react-router-dom';
-import { PlayersContext } from '../../Context/Context';
-import { display } from '@mui/system';
+
+
 
 export function Banner2() {
-  const { data, } = useContext(PlayersContext);
+  const { data, setData, crearFichaJugador } = useContext(PlayersContext);
+  const [genero, setGenero] = useState('')
   const url = 'http://localhost:8000/players/Avatar/'
   const [modalOpen, setModalOpen] = useState(false);
   const [playerData, setPlayerData] = useState({
-    nombre: '',
-    apellidos: '',
-    estatura: '',
-    edad: '',
-    nacionalidad: '',
-    posicion: '',
-    pieBueno: '',
-    club: '',
-    imagen: null,
+    Nombre: '',
+    Apellidos: '',
+    Género: '',
+    Estatura: '',
+    Edad: '',
+    Nacionalidad: '',
+    Posición: '',
+    PieBueno: '',
+    Club: '',
+    // Avatar: null,
   });
+
+  const handleGuardar = () => {
+    console.log("guardar ficha")
+    // Verificar que playerData tenga todos los datos necesarios antes de guardar
+    if (
+      playerData.Nombre &&
+      playerData.Apellidos &&
+      playerData.Género &&
+      playerData.Estatura &&
+      playerData.Edad &&
+      playerData.Nacionalidad &&
+      playerData.Posición &&
+      playerData.PieBueno &&
+      playerData.Club
+      // playerData.Avatar
+    ) {
+      // Llamar a la función del Context para crear la ficha de jugador
+      crearFichaJugador(playerData);
+      console.log("crear ficha")
+      // Cerrar el Modal y limpiar los datos del formulario
+      handleModalClose();
+    } else {
+      // Mostrar un mensaje de error o realizar alguna acción si falta algún dato requerido
+      console.log('Faltan datos requeridos para crear la ficha de jugador.');
+    }
+  };
 
 
   const [filterText, setFilterText] = useState('');
+
   const handleFilterChange = (e) => {
     setFilterText(e.target.value);
   };
@@ -38,15 +68,16 @@ export function Banner2() {
   const handleModalClose = () => {
     setModalOpen(false);
     setPlayerData({
-      nombre: '',
-      apellidos: '',
-      estatura: '',
-      edad: '',
-      nacionalidad: '',
-      posicion: '',
-      pieBueno: '',
-      club: '',
-      imagen: null,
+      Nombre: '',
+      Apellidos: '',
+      Género: '',
+      Estatura: '',
+      Edad: '',
+      Nacionalidad: '',
+      Posición: '',
+      PieBueno: '',
+      Club: '',
+      // Avatar: null,
     });
   };
 
@@ -58,11 +89,11 @@ export function Banner2() {
   };
 
   const handlePosicionChange = (e) => {
-    setPlayerData({ ...playerData, posicion: e.target.value });
+    setPlayerData({ ...playerData, Posición: e.target.value });
   };
 
   const handlePieBuenoChange = (e) => {
-    setPlayerData({ ...playerData, pieBueno: e.target.value });
+    setPlayerData({ ...playerData, PieBueno: e.target.value });
   };
 
   const imageInputLabelClass = playerData.imagen ? 'banner_modal-file-label active' : 'banner_modal-file-label';
@@ -107,44 +138,58 @@ export function Banner2() {
           <form className="banner__modal-form">
             <TextField
               label="Nombre"
-              value={playerData.nombre}
+              value={playerData.Nombre}
               onChange={(e) =>
-                setPlayerData({ ...playerData, nombre: e.target.value })
+                setPlayerData({ ...playerData, Nombre: e.target.value })
               }
             />
             <TextField
               label="Apellidos"
-              value={playerData.apellidos}
+              value={playerData.Apellidos}
               onChange={(e) =>
-                setPlayerData({ ...playerData, apellidos: e.target.value })
+                setPlayerData({ ...playerData, Apellidos: e.target.value })
               }
             />
+            <div className="banner__modal-select">
+              <label htmlFor="genero">Género</label>
+              <Select
+                label="Género"
+                id="genero"
+                value={playerData.Género}
+                onChange={(e) => setPlayerData({ ...playerData, Género: e.target.value })}
+                variant="outlined"
+                fullWidth
+              >
+                <MenuItem value="Masculino">Masculino</MenuItem>
+                <MenuItem value="Femenino">Femenino</MenuItem>
+              </Select>
+            </div>
             <TextField
               label="Estatura"
-              value={playerData.estatura}
+              value={playerData.Estatura}
               onChange={(e) =>
-                setPlayerData({ ...playerData, estatura: e.target.value })
+                setPlayerData({ ...playerData, Estatura: e.target.value })
               }
             />
             <TextField
               label="Edad"
-              value={playerData.edad}
+              value={playerData.Edad}
               onChange={(e) =>
-                setPlayerData({ ...playerData, edad: e.target.value })
+                setPlayerData({ ...playerData, Edad: e.target.value })
               }
             />
             <TextField
               label="Nacionalidad"
-              value={playerData.nacionalidad}
+              value={playerData.Nacionalidad}
               onChange={(e) =>
-                setPlayerData({ ...playerData, nacionalidad: e.target.value })
+                setPlayerData({ ...playerData, Nacionalidad: e.target.value })
               }
             />
             <div className="banner__modal-select">
               <label htmlFor="posicion">Posición</label>
               <Select
                 id="posicion"
-                value={playerData.posicion}
+                value={playerData.Posición}
                 onChange={handlePosicionChange}
                 variant="outlined"
                 fullWidth
@@ -159,7 +204,7 @@ export function Banner2() {
               <label htmlFor="pieBueno">Pie Bueno</label>
               <Select
                 id="pieBueno"
-                value={playerData.pieBueno}
+                value={playerData.PieBueno}
                 onChange={handlePieBuenoChange}
                 variant="outlined"
                 fullWidth
@@ -171,9 +216,9 @@ export function Banner2() {
             </div>
             <TextField
               label="Club"
-              value={playerData.club}
+              value={playerData.Club}
               onChange={(e) =>
-                setPlayerData({ ...playerData, club: e.target.value })
+                setPlayerData({ ...playerData, Club: e.target.value })
               }
             />
             <div className="banner__modal-file-input">
@@ -195,13 +240,12 @@ export function Banner2() {
             <Button variant="contained" onClick={handleModalClose}>
               Cancelar
             </Button>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={handleGuardar}>
               Guardar
             </Button>
           </div>
         </div>
       </Modal>
-
 
 
       {/* MODAL NUEVO INFORME */}
@@ -288,7 +332,9 @@ export function Banner2() {
 
                       <Box>
                         <Typography variant="h6" component="div">
+                        <Link  key={player.jugador._id} to={`/Informe/${player.jugador._id}`}>
                           <img className="banner2-foto-jugador" src={url + player.jugador.Avatar} alt="Foto" />
+                        </Link>  
                         </Typography>
                       </Box>
 
@@ -340,22 +386,17 @@ export function Banner2() {
             <Button variant="contained" onClick={handleReportModalClose} sx={{ marginBottom: "10px" }}>
               Cancelar
             </Button>
-            <Link to="/Informe">
-              <Button variant="contained" color="primary">
+            
+              <Button variant="contained" color="primary"  >
                 Aceptar
               </Button>
-            </Link>
+        
           </div>
         </Box>
       </Modal>
     </div>
   );
 }
-
-
-
-
-
 
 
 

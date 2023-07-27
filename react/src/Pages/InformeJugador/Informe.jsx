@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import "./Informe.css";
 import axios from "axios";
+import { PlayersContext } from "../../Context/Context";
+import { useParams } from 'react-router-dom';
 
 export function InformeJugador() {
+    const { id } = useParams();
+    console.log("esto es la id", id)
+    const { data } = useContext(PlayersContext);
+    // Buscar el jugador específico por ID en la lista de jugadores
+    if (!Array.isArray(data) || data.length === 0) {
+        return <div>No hay datos disponibles.</div>;
+      }
+        const jugador = data.find((player) => player.jugador._id === id);
+    
+    
+    console.log("esto es jugador", jugador)
+    console.log("esto es la data", data)
     const [opcionActiva, setOpcionActiva] = useState("principales");
     const mostrarOpcionActiva = (opcion) => {
         setOpcionActiva(opcion)
@@ -13,13 +27,14 @@ export function InformeJugador() {
     const url = "http://localhost:8000/informs";
     const handleSubmitInforme = () => {
         const data = {
-            // PlayerId: '', // Aquí puedes establecer el ID del jugador si tienes esa información disponible
+            PlayerId: id, // Aquí puedes establecer el ID del jugador si tienes esa información disponible
             SkillsPrincipales: skillsPrincipales,
             SkillsTacticas: skillsTacticas,
             SkillsFisicas: skillsFisicas,
             Texto: notasFinales,
             // MediaInforme: 0, // Puedes calcular la media aquí si tienes esa lógica implementada
         };
+        console.log("esto es data submitinforme", data)
         axios.post(url, data)
             .then(response => {
                 // Manejar la respuesta si es exitosa
@@ -148,7 +163,7 @@ export function InformeJugador() {
             </div>
 
             <div className="maincontainer1">
-                <div className="separador1"/>
+                <div className="separador1" />
                 <div className="imagen-nombre">
                     <div className="infofoto">
                         <div className="fotojugador">
@@ -157,17 +172,17 @@ export function InformeJugador() {
                     </div>
                     <div className="infojugador1">
                         <div className="nombrejugador1">
-                            <h1>POSICION</h1>
+                            <h1>Delantero</h1>
                             <h1>
-                                Pepe&nbsp;
+                            {jugador.jugador.Nombre}&nbsp;
                                 <span>
-                                    <strong>Pepas&nbsp;</strong>
+                                    <strong> {jugador.jugador.Apellidos}&nbsp;</strong>
                                 </span>
                             </h1>
                         </div>
                         <div className="posicion-pierna">
                             <p>
-                                <strong>Naciolanidad</strong>
+                                Nacionalidad
                             </p>
                             <p>Diestro</p>
                             <p>14 años</p>
@@ -181,29 +196,29 @@ export function InformeJugador() {
                 <div className="descripcion-partido">
                     <div className="partido">
                         <p>
-                            <strong>Partido</strong>
+                            Partido
                         </p>
-                        <p>vs perros</p>
+                        <p>VS Aluche</p>
                     </div>
 
                     <div className="separador"></div>
 
                     <div className="promedio">
-                        <strong><p>Promed.Eval.</p></strong>
-                        <p style={{ color: "lightgreen" }}>7.6</p>
+                        <p>Promed.Eval.</p>
+                        <p style={{ color: "lightgreen" }}> {jugador.jugador.Rating}</p>
                     </div>
 
                     <div className="separador"></div>
 
                     <div className="ant.eval">
-                        <strong> <p>Ant.Eva</p></strong>
-                        <p style={{ color: "lightgreen" }}>7.1</p>
+                        <p>Ant.Eva</p>
+                        <p style={{ color: "lightgreen" }}> {jugador.jugador.Rating}</p>
                     </div>
 
                     <div className="separador"></div>
 
                     <div className="fecha">
-                        <strong> <p>Fecha</p></strong>
+                        <p>Fecha</p>
                         <p>25/06/2023</p>
                     </div>
                 </div>
@@ -300,3 +315,42 @@ export function InformeJugador() {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

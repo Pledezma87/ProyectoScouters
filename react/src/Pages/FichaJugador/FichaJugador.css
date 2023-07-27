@@ -153,8 +153,16 @@
 
 
 
-  .grafica{
-    color: white;
-    margin: auto;
-    margin-top: 100px;
-}
+/* CSS */
+/* ... */
+
+/* Centrar verticalmente la gráfica */
+.RadarChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Ajusta este valor según sea necesario */
+  }
+  
+  /* ... */
+  

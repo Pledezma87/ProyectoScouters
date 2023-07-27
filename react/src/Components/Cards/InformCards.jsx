@@ -1,7 +1,7 @@
 import React from 'react';
 import './InformCard.css';
 import { Link } from 'react-router-dom';
-import jugadorImg from './imgs/jugador.jpg';
+import jugadorImg from './imgs/InformeIcono.jpg';
 import { useContext } from 'react';
 import { InformsContext } from '../../Context/Context';
 import { PlayersContext } from '../../Context/Context';

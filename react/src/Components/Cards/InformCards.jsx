@@ -57,7 +57,7 @@ export function InformCards() {
               <div className='divider'></div>
 
               <div className='info-container'>
-                <p className='info-column'>Ult. Eval. <span>{informs.MediaInforme}</span></p>
+                <p className='info-column'>Ult. Eval. <span>{informs.MediaInforme.toFixed(1)}</span></p>
                 <p className='info-column'>Informes <span>6</span></p>
                 <p className='info-column'>Prox.Seguim. <span>05/10/23</span></p>
               </div>

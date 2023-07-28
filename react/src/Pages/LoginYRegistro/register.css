@@ -632,7 +632,12 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: center; 
+}
+
+.TitleResetPassword{
+  font-weight: 200;
+  font-size: 35px;
 }
 
 .headerResetPassword {

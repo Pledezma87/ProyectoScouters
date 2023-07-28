@@ -3,18 +3,6 @@ import { Chart } from 'primereact/chart';
 import { PlayerMetricsContext } from '../../Context/Context';
 import './RadarChart.css'
 
-function getMediaGlobal(player, type) {
-  if (type === 'fisicas') {
-    return player.SkillsFisicas[0]?.mediaGlobal || 0;
-  } else if (type === 'principales') {
-    return player.SkillsPrincipales[0]?.mediaGlobal || 0;
-  } else if (type === 'tacticas') {
-    return player.SkillsTacticas[0]?.mediaGlobal || 0;
-  } else {
-    return 0;
-  }
-}
-
 export const RadarChart = () => {
   const { playerMetricsData } = useContext(PlayerMetricsContext);
   // console.log(playerMetricsData[0])
@@ -38,7 +26,10 @@ export const RadarChart = () => {
     plugins: {
       legend: {
         labels: {
-          color: '#495057',
+          color: '#fff',
+          font: {
+            size: 18, // Aquí puedes ajustar el tamaño de la letra de las etiquetas
+          },
         },
       },
     },
@@ -48,7 +39,10 @@ export const RadarChart = () => {
         max: 10,
         stepSize: 1,
         pointLabels: {
-          color: '#495057',
+          color: '#fff',
+          font: {
+            size: 14, // Aquí puedes ajustar el tamaño de la letra de las etiquetas
+          },
         },
         grid: {
           color: '#ebedef',
@@ -177,79 +171,71 @@ export const RadarChart = () => {
 
       });
 
-      setFisicasChartData({
-        ...fisicasChartData,
-        datasets: fisicasDatasets,
-      });
+      function actualizarChartData(setChartData, currentChartData, newDatasets) {
+        setChartData({
+          ...currentChartData,
+          datasets: newDatasets,
+        });
+      }
 
-      setTacticasChartData({
-        ...tacticasChartData,
-        datasets: tacticasDatasets,
-      });
+      // Llamadas a la función auxiliar
+      actualizarChartData(setFisicasChartData, fisicasChartData, fisicasDatasets);
+      actualizarChartData(setTacticasChartData, tacticasChartData, tacticasDatasets);
+      actualizarChartData(setPrincipalesChartData, principalesChartData, principalesDatasets);
 
-      setPrincipalesChartData({
-        ...principalesChartData,
-        datasets: principalesDatasets,
-      });
     }
   }, [playerMetricsData]);
 
   return (
-
     <div className="cardRadar">
+      <div className="chartsContainer">
+        <div className="fisicasRadar">
+          {/* Renderizar gráficos para habilidades físicas */}
+          {fisicasChartData.datasets.map((dataset, index) => (
+            <Chart
+              key={index}
+              type="radar"
+              data={{ labels: fisicasChartData.labels, datasets: [dataset] }}
+              options={lightOptions}
+              style={{ position: 'relative', width: '80%' }}
+            />
+          ))}
+        </div>
 
-      <div className="fisicasRadar">
-        {/* Renderizar gráficos para habilidades físicas */}
-        {fisicasChartData.datasets.map((dataset, index) => (
-          <Chart
-            key={index}
-            type="radar"
-            data={{ labels: fisicasChartData.labels, datasets: [dataset] }}
-            options={lightOptions}
-            style={{ position: 'relative', width: '20%' }}
-          />
-        ))}
+        <div className="principalesRadar">
+          {/* Renderizar gráficos para habilidades principales */}
+          {principalesChartData.datasets.map((dataset, index) => (
+            <Chart
+              key={index}
+              type="radar"
+              data={{ labels: principalesChartData.labels, datasets: [dataset] }}
+              options={lightOptions}
+              style={{ position: 'relative', width: '80%' }}
+            />
+          ))}
+        </div>
+
+        <div className="tacticasRadar">
+          {/* Renderizar gráficos para habilidades tácticas */}
+          {tacticasChartData.datasets.map((dataset, index) => (
+            <Chart
+              key={index}
+              type="radar"
+              data={{ labels: tacticasChartData.labels, datasets: [dataset] }}
+              options={lightOptions}
+              style={{ position: 'relative', width: '80%' }}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="principalesRadar">
-        {/* Renderizar gráficos para habilidades principales */}
-        {principalesChartData.datasets.map((dataset, index) => (
-          <Chart
-            key={index}
-            type="radar"
-            data={{ labels: principalesChartData.labels, datasets: [dataset] }}
-            options={lightOptions}
-            style={{ position: 'relative', width: '20%' }}
-          />
-        ))}
-      </div>
-
-      <div className="tacticasRadar">
-        {/* Renderizar gráficos para habilidades tácticas */}
-        {tacticasChartData.datasets.map((dataset, index) => (
-          <Chart
-            key={index}
-            type="radar"
-            data={{ labels: tacticasChartData.labels, datasets: [dataset] }}
-            options={lightOptions}
-            style={{ position: 'relative', width: '20%' }}
-          />
-        ))}
-      </div>
+      {/* Rest of the content remains the same */}
       {playerMetricsData.map((player) => (
         <div key={player.PlayerId} className='graficasContainer'>
-          <h4>Jugador {player.PlayerId}</h4>
-          <div className='graficasSpan'>
-            Media Global de Skills físicas: {getMediaGlobal(player, 'fisicas')}
-          </div>
-          <div className='graficasSpan'>
-            Media Global de Skills principales: {getMediaGlobal(player, 'principales')}
-          </div>
-          <div className='graficasSpan'>
-            Media Global de Skills tácticas: {getMediaGlobal(player, 'tacticas')}
-          </div>
+          {/* Player information */}
         </div>
       ))}
     </div>
   );
+
 };

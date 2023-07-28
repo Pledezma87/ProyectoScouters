@@ -157,12 +157,7 @@
 /* ... */
 
 /* Centrar verticalmente la gráfica */
-.RadarChart {
+.radars-container-main{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px; /* Ajusta este valor según sea necesario */
-  }
-  
-  /* ... */
-  
+    flex-direction: row;
+}

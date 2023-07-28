@@ -54,9 +54,10 @@ export function Context({ children }) {
         axios.get("http://localhost:8000/player-metrics"),
       ])
       .then(
-        await axios.spread((playersRes, informsRes) => {
+        await axios.spread((playersRes, informsRes,playerMetricsRes) => {
           setData(playersRes.data);
           setInformsData(informsRes.data);
+          setPlayerMetricsData(playerMetricsRes.data);
           console.log(playersRes.data); // Datos recibidos de la API para players
           console.log(informsRes.data); // Datos recibidos de la API para informs
         })

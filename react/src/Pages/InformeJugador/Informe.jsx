@@ -1,24 +1,19 @@
 import React, { useState, useContext } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import "./Informe.css";
 import axios from "axios";
 import { PlayersContext } from "../../Context/Context";
 import { useParams } from 'react-router-dom';
+import { format } from 'date-fns';
+import Swal from "sweetalert2";
 
 export function InformeJugador() {
+    const fechaActual = format(new Date(), 'dd/MM/yyyy')
+    const image = 'http://localhost:8000/players/Avatar/'
     const { id } = useParams();
-    console.log("esto es la id", id)
     const { data } = useContext(PlayersContext);
-    // Buscar el jugador específico por ID en la lista de jugadores
-    if (!Array.isArray(data) || data.length === 0) {
-        return <div>No hay datos disponibles.</div>;
-      }
-        const jugador = data.find((player) => player.jugador._id === id);
-    
-    
-    console.log("esto es jugador", jugador)
-    console.log("esto es la data", data)
+
     const [opcionActiva, setOpcionActiva] = useState("principales");
     const mostrarOpcionActiva = (opcion) => {
         setOpcionActiva(opcion)
@@ -116,6 +111,40 @@ export function InformeJugador() {
     const promedioHabilidadesPrincipales = calcularPromedioHabilidades(skillsPrincipales);
     const promedioHabilidadesTacticas = calcularPromedioHabilidades(skillsTacticas);
     const promedioHabilidadesFisicas = calcularPromedioHabilidades(skillsFisicas);
+    
+    const handleCombinedSubmit = () => {
+        handleSubmitInforme();
+        handleSubmitInform();
+      };
+    const navigate = useNavigate ()
+    function handleSubmitInform() {
+        // Aquí va la lógica para crear el informe
+        // Por ejemplo, podrías hacer una llamada a la API para guardar los datos del informe
+    
+        // Una vez que el informe se haya creado correctamente, muestra la alerta SweetAlert
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Informe creado con éxito",
+          text: "El informe se ha creado exitosamente.",
+          showConfirmButton: false,
+          timer: 4500,
+          toast: true,
+        });
+    
+        // Redirige al usuario a la página de inicio de sesión después de 5 segundos
+        setTimeout(() => {
+          navigate("/InterfazInformes");
+        }, 5000);
+      }
+
+    // Buscar el jugador específico por ID en la lista de jugadores
+    if (!Array.isArray(data) || data.length === 0) {
+        return <div>No hay datos disponibles.</div>;
+    }
+    const jugador = data.find((player) => player.jugador._id === id);
+    console.log("esto es jugador", jugador)
+    console.log("esto es la data", data)
 
     return (
         <div className="informe-container-jugador">
@@ -167,14 +196,14 @@ export function InformeJugador() {
                 <div className="imagen-nombre">
                     <div className="infofoto">
                         <div className="fotojugador">
-                            <img src="https://images.pexels.com/photos/159555/soccer-football-athlete-player-159555.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="imagen" />
+                            <img src={image + jugador.jugador.Avatar} alt="imagen" />
                         </div>
                     </div>
                     <div className="infojugador1">
                         <div className="nombrejugador1">
                             <h1>Delantero</h1>
                             <h1>
-                            {jugador.jugador.Nombre}&nbsp;
+                                {jugador.jugador.Nombre}&nbsp;
                                 <span>
                                     <strong> {jugador.jugador.Apellidos}&nbsp;</strong>
                                 </span>
@@ -182,44 +211,33 @@ export function InformeJugador() {
                         </div>
                         <div className="posicion-pierna">
                             <p>
-                                Nacionalidad
+                                {jugador.jugador.Nacionalidad}
                             </p>
-                            <p>Diestro</p>
-                            <p>14 años</p>
-                        </div>
-                        <div className="informe-fecha1">
-                            25 de Junio 2023
+                            <p>{jugador.jugador.PieBueno}</p>
+                            <p>{jugador.jugador.Edad}</p>
                         </div>
                     </div>
                 </div>
                 {/* DATOS del partido */}
                 <div className="descripcion-partido">
-                    <div className="partido">
-                        <p>
-                            Partido
-                        </p>
-                        <p>VS Aluche</p>
+                    <div className="muestra_club">                    
+                        <p>{jugador.jugador.Club}</p>
                     </div>
 
-                    <div className="separador"></div>
+                    <div className="separador"/>
 
-                    <div className="promedio">
-                        <p>Promed.Eval.</p>
-                        <p style={{ color: "lightgreen" }}> {jugador.jugador.Rating}</p>
+                    <div className="muestra_promedio">
+                        <p>Promedio Evaluacion, Rating</p>
+                    </div>        
+                    <div className="promedio_rating">
+                        <p style={{ color: "lightgreen" }}>{jugador.jugador.Rating}</p>
                     </div>
 
-                    <div className="separador"></div>
+                    <div className="separador"/>
 
-                    <div className="ant.eval">
-                        <p>Ant.Eva</p>
-                        <p style={{ color: "lightgreen" }}> {jugador.jugador.Rating}</p>
-                    </div>
-
-                    <div className="separador"></div>
-
-                    <div className="fecha">
+                    <div className="informe-fecha">
                         <p>Fecha</p>
-                        <p>25/06/2023</p>
+                        <p>{fechaActual}</p>
                     </div>
                 </div>
                 <div className="separadorskilldos"></div>
@@ -308,49 +326,10 @@ export function InformeJugador() {
                             </textarea>
                         </div>
                         {/* Botón para enviar el informe completo */}
-                        <button className='button-informecompleto' onClick={handleSubmitInforme}>Enviar Informe Completo</button>
+                        <button className='button-informecompleto' onClick={handleCombinedSubmit}>Enviar Informe Completo</button>
                     </div>
                 )}
             </div>
         </div>
     );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

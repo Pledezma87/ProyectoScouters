@@ -1,24 +1,23 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Chart } from 'primereact/chart';
 import { PlayerMetricsContext } from '../../Context/Context';
-import './RadarChart.css'
+import './RadarChart.css';
 
-export const RadarChart = () => {
+export const RadarChart = ({ playerId }) => {
   const { playerMetricsData } = useContext(PlayerMetricsContext);
-  // console.log(playerMetricsData[0])
 
   const [fisicasChartData, setFisicasChartData] = useState({
-    labels: ["Agilidad", "Flexibilidad", "Fuerza", "Resistencia", "Salto", "Velocidad",],
+    labels: ["Agilidad", "Flexibilidad", "Fuerza", "Resistencia", "Salto", "Velocidad"],
     datasets: [],
   });
 
   const [principalesChartData, setPrincipalesChartData] = useState({
-    labels: ["Asociacion", "Cabeza", "Centros", "ControlDelBalon", "Disparo", "Dribling", "PasesLargos", "PieDerecho", "PieIzquierdo", "Reflejos",],
+    labels: ["Asociacion", "Cabeza", "Centros", "ControlDelBalon", "Disparo", "Dribling", "PasesLargos", "PieDerecho", "PieIzquierdo", "Reflejos"],
     datasets: [],
   });
 
   const [tacticasChartData, setTacticasChartData] = useState({
-    labels: ["Anticipacion", "Colocacion", "Concentracion", "Contundencia", "Desdoble", "Desmarque", "Posicionamiento", "VisionDeJuego",],
+    labels: ["Anticipacion", "Colocacion", "Concentracion", "Contundencia", "Desdoble", "Desmarque", "Posicionamiento", "VisionDeJuego"],
     datasets: [],
   });
 
@@ -28,7 +27,7 @@ export const RadarChart = () => {
         labels: {
           color: '#fff',
           font: {
-            size: 18, // Aquí puedes ajustar el tamaño de la letra de las etiquetas
+            size: 18,
           },
         },
       },
@@ -41,7 +40,7 @@ export const RadarChart = () => {
         pointLabels: {
           color: '#fff',
           font: {
-            size: 14, // Aquí puedes ajustar el tamaño de la letra de las etiquetas
+            size: 14,
           },
         },
         grid: {
@@ -57,29 +56,31 @@ export const RadarChart = () => {
   useEffect(() => {
     // Check if playerMetricsData is not empty before processing
     if (playerMetricsData.length > 0) {
-      // Formatear los datos para las habilidades físicas
-      const fisicasDatasets = playerMetricsData.map((player, index) => {
-        const backgroundColor = index % 2 === 0 ? 'rgba(6, 214, 160, 0.4)' : 'rgba(239, 71, 111, 0.4)';
-        const borderColor = index % 2 === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(75, 192, 192, 1)';
+      // Filtrar los datos para obtener el jugador específico por su ID
+      const currentPlayerData = playerMetricsData.find(player => player.PlayerId === playerId);
 
-        const skillsData = [
-          player?.SkillsFisicas[0]?.Agilidad,
-          player?.SkillsFisicas[0]?.Flexibilidad,
-          player?.SkillsFisicas[0]?.Fuerza,
-          player?.SkillsFisicas[0]?.Resistencia,
-          player?.SkillsFisicas[0]?.Salto,
-          player?.SkillsFisicas[0]?.Velocidad,
-        ];
-        const Skill = "Skills Fisicas";
+      if (currentPlayerData) {
+        // Formatear los datos para las habilidades físicas
+        const fisicasDatasets = [];
+        if (currentPlayerData.SkillsFisicas && currentPlayerData.SkillsFisicas.length > 0) {
+          const backgroundColor = currentPlayerData.SkillsFisicas.length % 2 === 0 ? 'rgba(6, 214, 160, 0.4)' : 'rgba(255, 206, 86, 0.4)';
+          const borderColor = currentPlayerData.SkillsFisicas.length % 2 === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(75, 192, 192, 1)';
 
-        // Make sure player.SkillsTacticas is defined and not empty
-        if (player.SkillsTacticas && player.SkillsTacticas.length > 0) {
-          // Make sure player.SkillsTacticas[0].mediaGlobal exists and is not empty
-          if (player.SkillsTacticas[0].mediaGlobal !== undefined && player.SkillsTacticas[0].mediaGlobal !== null) {
-            // Assuming player.SkillsTacticas[0].mediaGlobal contains a numeric value
-            const mediaGlobalAsString = String(player.SkillsFisicas[0].mediaGlobal);
-            return {
-              label: `${Skill}, ${mediaGlobalAsString}`, // Fixed the template literal
+          const mediaGlobalFisicas = currentPlayerData.SkillsFisicas[0].mediaGlobal;
+          const skillsData = [
+            currentPlayerData.SkillsFisicas[0].Agilidad,
+            currentPlayerData.SkillsFisicas[0].Flexibilidad,
+            currentPlayerData.SkillsFisicas[0].Fuerza,
+            currentPlayerData.SkillsFisicas[0].Resistencia,
+            currentPlayerData.SkillsFisicas[0].Salto,
+            currentPlayerData.SkillsFisicas[0].Velocidad,
+          ];
+          const Skill = `Skills Fisicas, ${mediaGlobalFisicas.toFixed(1)}`; // Redondear aquí
+
+          if (currentPlayerData.SkillsFisicas[0].mediaGlobal !== undefined && currentPlayerData.SkillsFisicas[0].mediaGlobal !== null) {
+            const mediaGlobalAsString = String(currentPlayerData.SkillsFisicas[0].mediaGlobal);
+            fisicasDatasets.push({
+              label: Skill,
               backgroundColor,
               borderColor,
               pointBackgroundColor: borderColor,
@@ -87,38 +88,35 @@ export const RadarChart = () => {
               pointHoverBackgroundColor: '#fff',
               pointHoverBorderColor: borderColor,
               data: skillsData,
-            };
+            });
           }
         }
-      });
 
-      // Formatear los datos para las habilidades principales
-      const principalesDatasets = playerMetricsData.map((player, index) => {
-        const backgroundColor = index % 2 === 0 ? 'rgba(6, 214, 160, 0.4)' : 'rgba(239, 71, 111, 0.4)';
-        const borderColor = index % 2 === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(75, 192, 192, 1)';
+        // Formatear los datos para las habilidades principales
+        const principalesDatasets = [];
+        if (currentPlayerData.SkillsPrincipales && currentPlayerData.SkillsPrincipales.length > 0) {
+          const backgroundColor = currentPlayerData.SkillsPrincipales.length % 2 === 0 ? 'rgba(6, 214, 160, 0.4)' : 'rgba(54, 162, 235, 0.4)';
+          const borderColor = currentPlayerData.SkillsPrincipales.length % 2 === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(75, 192, 192, 1)';
 
-        const principalesData = [
-          player?.SkillsPrincipales[0]?.Asociacion,
-          player?.SkillsPrincipales[0]?.Cabeza,
-          player?.SkillsPrincipales[0]?.Centros,
-          player?.SkillsPrincipales[0]?.ControlDelBalon,
-          player?.SkillsPrincipales[0]?.Disparo,
-          player?.SkillsPrincipales[0]?.Dribling,
-          player?.SkillsPrincipales[0]?.PasesLargos,
-          player?.SkillsPrincipales[0]?.PieDerecho,
-          player?.SkillsPrincipales[0]?.PieIzquierdo,
-          player?.SkillsPrincipales[0]?.Reflejos,
-        ];
-        const Skill = "Skills Principales";
+          const mediaGlobalPrincipales = currentPlayerData.SkillsPrincipales[0].mediaGlobal;
+          const principalesData = [
+            currentPlayerData.SkillsPrincipales[0].Asociacion,
+            currentPlayerData.SkillsPrincipales[0].Cabeza,
+            currentPlayerData.SkillsPrincipales[0].Centros,
+            currentPlayerData.SkillsPrincipales[0].ControlDelBalon,
+            currentPlayerData.SkillsPrincipales[0].Disparo,
+            currentPlayerData.SkillsPrincipales[0].Dribling,
+            currentPlayerData.SkillsPrincipales[0].PasesLargos,
+            currentPlayerData.SkillsPrincipales[0].PieDerecho,
+            currentPlayerData.SkillsPrincipales[0].PieIzquierdo,
+            currentPlayerData.SkillsPrincipales[0].Reflejos,
+          ];
+          const Skill = `Skills Principales, ${mediaGlobalPrincipales.toFixed(1)}`; // Redondear aquí
 
-        // Make sure player.SkillsTacticas is defined and not empty
-        if (player.SkillsTacticas && player.SkillsTacticas.length > 0) {
-          // Make sure player.SkillsTacticas[0].mediaGlobal exists and is not empty
-          if (player.SkillsTacticas[0].mediaGlobal !== undefined && player.SkillsTacticas[0].mediaGlobal !== null) {
-            // Assuming player.SkillsTacticas[0].mediaGlobal contains a numeric value
-            const mediaGlobalAsString = String(player.SkillsPrincipales[0].mediaGlobal);
-            return {
-              label: `${Skill}, ${mediaGlobalAsString}`, // Fixed the template literal
+          if (currentPlayerData.SkillsPrincipales[0].mediaGlobal !== undefined && currentPlayerData.SkillsPrincipales[0].mediaGlobal !== null) {
+            const mediaGlobalAsString = String(currentPlayerData.SkillsPrincipales[0].mediaGlobal);
+            principalesDatasets.push({
+              label: Skill,
               backgroundColor,
               borderColor,
               pointBackgroundColor: borderColor,
@@ -126,35 +124,33 @@ export const RadarChart = () => {
               pointHoverBackgroundColor: '#fff',
               pointHoverBorderColor: borderColor,
               data: principalesData,
-            };
+            });
           }
         }
-      });
 
-      const tacticasDatasets = playerMetricsData.map((player, index) => {
-        const backgroundColor = index % 2 === 0 ? 'rgba(6, 214, 160, 0.4)' : 'rgba(239, 71, 111, 0.4)';
-        const borderColor = index % 2 === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(75, 192, 192, 1)';
+        // Formatear los datos para las habilidades tácticas
+        const tacticasDatasets = [];
+        if (currentPlayerData.SkillsTacticas && currentPlayerData.SkillsTacticas.length > 0) {
+          const backgroundColor = currentPlayerData.SkillsTacticas.length % 2 === 0 ? 'rgba(6, 214, 160, 0.4)' : 'rgba(153, 102, 255, 0.4)';
+          const borderColor = currentPlayerData.SkillsTacticas.length % 2 === 0 ? 'rgba(54, 162, 235, 1)' : 'rgba(75, 192, 192, 1)';
 
-        const tacticasData = [
-          player?.SkillsTacticas[0]?.Anticipacion,
-          player?.SkillsTacticas[0]?.Colocacion,
-          player?.SkillsTacticas[0]?.Concentracion,
-          player?.SkillsTacticas[0]?.Contundencia,
-          player?.SkillsTacticas[0]?.Desdoble,
-          player?.SkillsTacticas[0]?.Desmarque,
-          player?.SkillsTacticas[0]?.Posicionamientos,
-          player?.SkillsTacticas[0]?.VisionDeJuego,
-        ];
-        const Skill = "Skills Tacticas";
+          const mediaGlobalTacticas = currentPlayerData.SkillsTacticas[0].mediaGlobal;
+          const tacticasData = [
+            currentPlayerData.SkillsTacticas[0].Anticipacion,
+            currentPlayerData.SkillsTacticas[0].Colocacion,
+            currentPlayerData.SkillsTacticas[0].Concentracion,
+            currentPlayerData.SkillsTacticas[0].Contundencia,
+            currentPlayerData.SkillsTacticas[0].Desdoble,
+            currentPlayerData.SkillsTacticas[0].Desmarque,
+            currentPlayerData.SkillsTacticas[0].Posicionamientos,
+            currentPlayerData.SkillsTacticas[0].VisionDeJuego,
+          ];
+          const Skill = `Skills Tácticas, ${mediaGlobalTacticas.toFixed(1)}`; // Redondear aquí
 
-        // Make sure player.SkillsTacticas is defined and not empty
-        if (player.SkillsTacticas && player.SkillsTacticas.length > 0) {
-          // Make sure player.SkillsTacticas[0].mediaGlobal exists and is not empty
-          if (player.SkillsTacticas[0].mediaGlobal !== undefined && player.SkillsTacticas[0].mediaGlobal !== null) {
-            // Assuming player.SkillsTacticas[0].mediaGlobal contains a numeric value
-            const mediaGlobalAsString = String(player.SkillsTacticas[0].mediaGlobal);
-            return {
-              label: `${Skill}, ${mediaGlobalAsString}`, // Fixed the template literal
+          if (currentPlayerData.SkillsTacticas[0].mediaGlobal !== undefined && currentPlayerData.SkillsTacticas[0].mediaGlobal !== null) {
+            const mediaGlobalAsString = String(currentPlayerData.SkillsTacticas[0].mediaGlobal);
+            tacticasDatasets.push({
+              label: Skill,
               backgroundColor,
               borderColor,
               pointBackgroundColor: borderColor,
@@ -162,29 +158,17 @@ export const RadarChart = () => {
               pointHoverBackgroundColor: '#fff',
               pointHoverBorderColor: borderColor,
               data: tacticasData,
-            };
+            });
           }
         }
 
-        // Return a default object or handle the case where data is not available
-        return { label: 'Data not available', backgroundColor: '#000', borderColor: '#000', data: [] };
-
-      });
-
-      function actualizarChartData(setChartData, currentChartData, newDatasets) {
-        setChartData({
-          ...currentChartData,
-          datasets: newDatasets,
-        });
+        // Actualizar los estados con los nuevos datos formateados
+        setFisicasChartData((prevData) => ({ ...prevData, datasets: fisicasDatasets }));
+        setPrincipalesChartData((prevData) => ({ ...prevData, datasets: principalesDatasets }));
+        setTacticasChartData((prevData) => ({ ...prevData, datasets: tacticasDatasets }));
       }
-
-      // Llamadas a la función auxiliar
-      actualizarChartData(setFisicasChartData, fisicasChartData, fisicasDatasets);
-      actualizarChartData(setTacticasChartData, tacticasChartData, tacticasDatasets);
-      actualizarChartData(setPrincipalesChartData, principalesChartData, principalesDatasets);
-
     }
-  }, [playerMetricsData]);
+  }, [playerMetricsData, playerId]);
 
   return (
     <div className="cardRadar">
@@ -228,14 +212,83 @@ export const RadarChart = () => {
           ))}
         </div>
       </div>
-
-      {/* Rest of the content remains the same */}
-      {playerMetricsData.map((player) => (
-        <div key={player.PlayerId} className='graficasContainer'>
-          {/* Player information */}
-        </div>
-      ))}
     </div>
   );
-
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

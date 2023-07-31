@@ -43,8 +43,8 @@ export function Context({ children }) {
     getPlayersData()
   }, []);
 
-  console.log(data); // Verificar el estado de data
-  console.log(informsData); // Verificar el estado de informsData
+  // console.log(data); // Verificar el estado de data
+  // console.log(informsData); // Verificar el estado de informsData
 
   async function getPlayersData() {
     await axios
@@ -58,8 +58,8 @@ export function Context({ children }) {
           setData(playersRes.data);
           setInformsData(informsRes.data);
           setPlayerMetricsData(playerMetricsRes.data);
-          console.log(playersRes.data); // Datos recibidos de la API para players
-          console.log(informsRes.data); // Datos recibidos de la API para informs
+          // console.log(playersRes.data); // Datos recibidos de la API para players
+          // console.log(informsRes.data); // Datos recibidos de la API para informs
         })
       )
       .catch((error) => console.error(error));
@@ -88,8 +88,8 @@ export function Context({ children }) {
        await axios.spread((playersRes, informsRes) => {
           setData(playersRes.data);
           setInformsData(informsRes.data);
-          console.log(playersRes.data); // Datos recibidos de la API para players
-          console.log(informsRes.data); // Datos recibidos de la API para informs
+          // console.log(playersRes.data); // Datos recibidos de la API para players
+          // console.log(informsRes.data); // Datos recibidos de la API para informs
         })
       )
       .catch((error) => console.error(error));
@@ -119,56 +119,3 @@ export function Context({ children }) {
     </PlayersContext.Provider>
   );
 }
-
-
-
-
-
-
-
-
-// import React, { createContext, useState, useEffect } from "react";
-// import axios from "axios";
-
-// export const PlayersContext = createContext();
-// export const InformsContext = createContext();
-// export const PlayerMetricsContext = createContext();
-
-// export function Context({ children }) {
-//   const [data, setData] = useState([]);
-//   const [informsData, setInformsData] = useState([]);
-//   const [playerMetricsData, setPlayerMetricsData] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//       .all([
-//         axios.get("http://localhost:8000/players"),
-//         axios.get("http://localhost:8000/informs"),
-//         axios.get("http://localhost:8000/player-metrics"), // Adjust the URL according to your API
-//       ])
-//       .then(
-//         axios.spread((playersRes, informsRes, playerMetricsRes) => {
-//           setData(playersRes.data);
-//           setInformsData(informsRes.data);
-//           setPlayerMetricsData(playerMetricsRes.data);
-//         })
-//       )
-//       .catch((error) => console.error(error));
-//   }, []);
-
-//   // console.log(data); // Verificar el estado de data
-
-//   return (
-//     <PlayersContext.Provider value={{ data, setData }}>
-//       <InformsContext.Provider value={{ informsData, setInformsData }}>
-//         <PlayerMetricsContext.Provider value={{ playerMetricsData, setPlayerMetricsData }}>
-//           {children}
-//         </PlayerMetricsContext.Provider>
-//       </InformsContext.Provider>
-//     </PlayersContext.Provider>
-//   );
-// }
-
-
-
-

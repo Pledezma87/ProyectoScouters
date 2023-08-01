@@ -12,3 +12,263 @@
     flex: 1 1 30%;
     /* Adjust the width of each chart as per your requirement */
 }
+
+/* COLORES DEL PROYECTO */
+:root {
+    --verde: #c7f55c;
+    --gris: #36404c;
+    --gris-ceniza: #292e3a;
+    --claro: #ffffff;
+    --oscuro: #201e1f;
+}
+
+.habilidades_C {
+    color: #ffffff;
+    margin: auto;
+    margin-left: 13rem;
+}
+
+.ChartContainer {
+    width: 80%;
+    margin-left: -64rem;
+}
+
+.containerComparativo {
+    background-image: url(./img/comparativo.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+.listaDeJugadores {
+    color: #ffffff;
+    background-color: #2f2f2f80;
+    /* background-color: #8c030380; */
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    margin-left: -80rem;
+    cursor: pointer;
+    gap: 28px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.h2Comparativo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.seleccionaJugadores {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: -80rem;
+    margin-top: 5rem;
+    color: white;
+    font-family: "Oswald";
+
+    background-color: #2f2f2f80;
+
+    height: 70px;
+    width: 15rem;
+}
+
+.container-Comparativo {
+    width: 100%;
+    background-color: #000008ef;
+    position: relative;
+}
+
+.newColorFirstPlayer {
+    color: rgba(60, 142, 242, 0.533);
+}
+
+.newColorSecondPlayer {
+    color: rgba(175, 52, 52, 0.702);
+}
+
+.imagen-Comparativa {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+.bannerComparativo {
+    display: flex;
+    background: linear-gradient(to right,
+            rgba(54, 64, 76, 0.3) 45%,
+            rgba(0, 0, 0, 0.4) 45%);
+    justify-content: space-between;
+
+    height: 175px;
+    width: auto;
+
+    padding: 0 auto;
+    color: var(--claro);
+}
+
+.banner__leftComparativo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* width: 50%; */
+    background-color: transparent;
+}
+
+.banner_rightComparativo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    background-color: transparent;
+}
+
+.banner__icon-containerComparativo {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--claro);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.banner__iconComparativo {
+    color: var(--oscuro);
+}
+
+.banner__textComparativo {
+    color: #ffffff;
+    font-family: Oswald;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 3.36px;
+}
+
+.banner__rightComparativo {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    background-color: #201e1f;
+}
+
+.banner_buttonComparativo {
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--verde);
+    color: var(--oscuro);
+    font-family: "Oswald", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    height: 60px;
+    width: 250px;
+}
+
+.banner__button-iconComparativo:hover {
+    background-color: var(--claro);
+}
+
+.headerComparativo {
+    width: 100%;
+}
+
+.headerComparativo {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+    color: var(--claro);
+    font-family: "Oswald", sans-serif;
+    font-weight: 300;
+    background: linear-gradient(to right, var(--verde) 40%, var(--oscuro) 40%);
+}
+
+.header__menu-itemComparativo.active {
+    color: var(--verde);
+}
+
+.header__companyComparativo {
+    display: flex;
+    margin-left: 150px;
+    flex-grow: 1;
+    text-decoration: none;
+}
+
+.header__company-badgeComparativo {
+    background-color: var(--claro);
+    color: var(--gris-ceniza);
+    font-family: "Oswald", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 1.4px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.header__company-nameComparativo {
+    text-transform: uppercase;
+    color: #292e3a;
+    text-align: center;
+    font-family: Oswald;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 3.36px;
+}
+
+.header__menuComparativo {
+    display: flex;
+    margin-right: 150px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.header__menu-itemComparativo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    color: var(--claro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.header__menu-itemComparativo:hover {
+    color: var(--verde);
+}
+
+.botonComparativo {
+    margin-left: 85rem;
+    margin-top: -3rem;
+}
+
+.prueba {
+    background-color: #c7f55c;
+}

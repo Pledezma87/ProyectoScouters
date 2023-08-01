@@ -32,7 +32,7 @@ export function BannerFicha() {
                   {jugador.jugador.Nombre} <span className='apellido'>{jugador.jugador.Apellidos}</span>
                 </h2>
               </div>
-  
+
               <div className='info-jugador'>
                 <p className='posicion'>{jugador.jugador.Posición}</p>
                 <p>{jugador.jugador.PieBueno}</p>

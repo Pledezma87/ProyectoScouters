@@ -67,7 +67,7 @@ export function Landing() {
       {/* SECCIÓN TRES */}
       <section className="third-section">
         <div className='service-header'>
-          <h3>UNA HERRAMIENTA, <span class="highlight">MUCHAS SOLUCIONES</span></h3>
+          <h3>UNA HERRAMIENTA, <span className="highlight">MUCHAS SOLUCIONES</span></h3>
           <p>Descubre cómo nuestra herramienta revoluciona el mundo del scouting de fútbol</p>
         </div>
   <div className='service-container'>

@@ -12,7 +12,7 @@ import { FichaJugador } from './Pages/FichaJugador/FichaJugador';
 import {TokenExpirado} from './Pages/LoginYRegistro/TokenExpirado';
 import { InformeJugador } from './Pages/InformeJugador/Informe';
 import { PasswordReset } from './Pages/LoginYRegistro/PasswordReset';
-import { CompararJugadores } from './Components/Metricas/Comparativa';
+import { CompararJugadores } from './Components/Metricas/CompararJugadores';
 
 
 export function App() {
@@ -31,7 +31,7 @@ export function App() {
         <Route path='/FichaJugador/:id' element={<FichaJugador/>} />
         <Route path='/Informe/:id' element={<InformeJugador/>} />
         <Route path="/reset-password" element={<PasswordReset />} />
-        <Route path="/ruta" element={<CompararJugadores />} />
+        <Route path="/comparar" element={<CompararJugadores />} />
       </Routes>
     </BrowserRouter>
   );

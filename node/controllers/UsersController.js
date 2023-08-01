@@ -56,7 +56,7 @@ export const registerUser = async (req, res) => {
     console.log(userCreate);
 
     if (userCreate) {
-   
+
       const token = jwt.sign(
         { userId: userCreate._id, username: userCreate.name },
         "jswtoken"
@@ -83,8 +83,8 @@ export const registerUser = async (req, res) => {
         ${userCreate.name}, Recientemente te has registrado en nuestra página Scouters. Si no has sido tú quien se ha registrado, por favor ignora este mensaje. Si has sido tú, por favor haz clic en el siguiente enlace para activar tu cuenta: <a href="http://localhost:8000/users/confirm/${userCreate.confirmationToken}" style="color: #007bff; text-decoration: none;">Confirmation_Scouters</a>
       </p>
       </div>`,
-      
-        
+
+
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -108,7 +108,7 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   try {
-    const {name, email, password } = req.body;
+    const { name, email, password } = req.body;
     const existingUser = await User.findOne({ name });
 
     if (!existingUser) {
@@ -198,7 +198,7 @@ export const sendEmailWithNewToken = async (email, token) => {
     </div>
     `,
     };
-    
+
 
     await transporter.sendMail(mailOptions);
   } catch (error) {
@@ -239,7 +239,7 @@ export const resetPassword = async (req, res) => {
 
 
 
-const  sendPasswordChangeConfirmation = async (email, ) => {
+const sendPasswordChangeConfirmation = async (email,) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "hotmail",
@@ -260,7 +260,7 @@ const  sendPasswordChangeConfirmation = async (email, ) => {
     </div>
     `,
     };
-    
+
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error("Error al enviar el correo electrónico:", error);

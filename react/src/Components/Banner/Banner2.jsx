@@ -11,7 +11,7 @@ import './Banner2.css';
 import { Link } from 'react-router-dom';
 
 export function Banner2() {
-  const { data, setData, crearFichaJugador } = useContext(PlayersContext);
+  const { data, crearFichaJugador } = useContext(PlayersContext);
   const [genero, setGenero] = useState('')
   const url = 'http://localhost:8000/players/Avatar/'
   const [modalOpen, setModalOpen] = useState(false);

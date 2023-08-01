@@ -1,7 +1,4 @@
 import React from 'react';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import TwitterIcon from '@mui/icons-material/Twitter';
-// import YouTubeIcon from '@mui/icons-material/YouTube';
 import './Landing.css';
 import { Link } from "react-router-dom";
 import VideoFutbol from "./Video/VideoFutbol1.mp4";

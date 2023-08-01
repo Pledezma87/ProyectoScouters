@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import { Icon} from '@mui/material'
+import { Icon } from '@mui/material'
 
 export function HeaderComparativo() {
   return (
     <header className="headerComparativo">
       <Link to="/InterfazJugadores" className="banner_volver">
-        <Icon component={KeyboardReturnIcon} className="banner_volver-icon" sx={{fontSize:'50px'}}/>
+        <Icon component={KeyboardReturnIcon} className="banner_volver-icon" sx={{ fontSize: '50px' }} />
 
       </Link>
       <Link className="header__companyComparativo">

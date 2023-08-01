@@ -138,3 +138,7 @@
 .header__notifications-icon:hover {
     color: var(--verde);
 }
+
+.banner_volver-icon:hover {
+    color: var(--claro);
+}

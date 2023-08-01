@@ -1,17 +1,13 @@
 import express from "express";
-import { registerUser, loginUser,sendEmailWithNewToken, generateNewToken, resetPassword  } from "../controllers/UsersController.js";
+import { registerUser, loginUser, sendEmailWithNewToken, generateNewToken, resetPassword } from "../controllers/UsersController.js";
 // import { authenticateUser } from "../authMiddelware/authMiddelware.js";
 import User from "../models/UsersModel.js";
 import { v4 as uuidv4 } from "uuid";
 // import multer from "multer";
 
-
-
-
-
- const router = express.Router();
+const router = express.Router();
 // Ruta para registrar un nuevo usuario (solo accesible para administradores)
-router.post("/register",registerUser, );
+router.post("/register", registerUser,);
 // router.post("/register",upload.single("nif"),registerUser, );
 // Ruta para iniciar sesión
 router.post("/login", loginUser);

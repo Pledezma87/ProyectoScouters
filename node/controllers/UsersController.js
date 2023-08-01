@@ -261,7 +261,6 @@ const  sendPasswordChangeConfirmation = async (email, ) => {
     `,
     };
     
-
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error("Error al enviar el correo electrónico:", error);

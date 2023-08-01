@@ -6,11 +6,11 @@
     --oscuro: #201e1f;
     --color-primario: var(--verde);
     --color-secundario: var(--gris-ceniza);
-  }
-  
+}
+
 
 .header {
-    
+
     display: flex;
     align-items: center;
     padding: 20px;
@@ -23,8 +23,7 @@
 
 .header__menu-item.active {
     color: var(--verde);
-  }
-  
+}
 
 .header__company {
     display: flex;
@@ -46,8 +45,7 @@
     border-radius: 10px;
     margin-top: 15px;
     margin-left: 15px;
-  }
-  
+}
 
 .header__company-name {
     text-transform: uppercase;
@@ -67,7 +65,7 @@
     text-transform: uppercase;
     font-weight: 400;
     font-style: normal;
-    
+
 }
 
 .header__menu-item {
@@ -85,14 +83,12 @@
 
 .header__menu-icon {
     margin-right: 5px;
-  
+
 }
 
-.header__menu-item + .header__menu-item {
+.header__menu-item+.header__menu-item {
     margin-left: 10rem;
-  }
-  
-  
+}
 
 .header__search {
     position: relative;
@@ -142,12 +138,3 @@
 .header__notifications-icon:hover {
     color: var(--verde);
 }
-
-
-
-
-
-
-
-
-

@@ -5,11 +5,13 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SearchIcon from '@mui/icons-material/Search'
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+
 import './Banner2.css';
 import { Link } from 'react-router-dom';
 
 export function Banner2() {
-  const { data, setData, crearFichaJugador } = useContext(PlayersContext);
+  const { data, crearFichaJugador } = useContext(PlayersContext);
   const [genero, setGenero] = useState('')
   const url = 'http://localhost:8000/players/Avatar/'
   const [modalOpen, setModalOpen] = useState(false);
@@ -116,6 +118,10 @@ export function Banner2() {
         <Link className="banner__button" onClick={handleModalOpen}>
           <Icon component={PersonAddIcon} className="banner__button-icon" />
           Nueva Ficha
+        </Link>
+        <Link to="/comparar" className="banner__button" onClick={handleModalOpen}>
+          <Icon component={CompareArrowsIcon} className="banner__button-icon" />
+          Comparar Jugadores
         </Link>
 
         <Link className="banner__button" onClick={handleReportModalOpen}>

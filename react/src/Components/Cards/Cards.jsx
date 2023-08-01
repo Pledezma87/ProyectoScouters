@@ -73,7 +73,7 @@ export function Cards() {
               </div>
 
               <div className="button-container">
-              <Link  key={player.jugador._id} to={`/FichaJugador/${player.jugador._id}`}>
+                <Link key={player.jugador._id} to={`/FichaJugador/${player.jugador._id}`}>
                   <button className="rompedor-button">Ficha Técnica</button>
                 </Link>
               </div>

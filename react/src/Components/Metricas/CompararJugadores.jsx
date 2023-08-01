@@ -5,7 +5,7 @@ import './RadarChart.css';
 import { Button, Icon, Typography, Box } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
-import { HeaderComparativo } from '../Header/BannerComparativo';
+import { HeaderComparativo } from '../Header/HeaderComparativo';
 
 export const CompararJugadores = () => {
   const { playerMetricsData } = useContext(PlayerMetricsContext);

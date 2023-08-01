@@ -7,7 +7,6 @@ import { InterfazJugadores } from './Pages/InterfazJugadores/InterfazJugadores';
 import { Login } from './Pages/LoginYRegistro/Login';
 import { Registro } from './Pages/LoginYRegistro/Registro';
 import { InterfazInformes } from './Pages/InterfazInformes/InterfazInformes';
-import { NuevaFicha } from './Pages/NuevaFicha/NuevaFicha';
 import { FichaJugador } from './Pages/FichaJugador/FichaJugador';
 import {TokenExpirado} from './Pages/LoginYRegistro/TokenExpirado';
 import { InformeJugador } from './Pages/InformeJugador/Informe';
@@ -27,7 +26,6 @@ export function App() {
         <Route path='/TokenExpirado' element={<TokenExpirado />} />
         <Route path='/registro' element={<Registro/>} />
         <Route path='/InterfazInformes' element={<InterfazInformes/>} /> 
-        <Route path='/NuevaFicha' element={<NuevaFicha/>} />
         <Route path='/FichaJugador/:id' element={<FichaJugador/>} />
         <Route path='/Informe/:id' element={<InformeJugador/>} />
         <Route path="/reset-password" element={<PasswordReset />} />

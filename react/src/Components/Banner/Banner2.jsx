@@ -8,8 +8,6 @@ import SearchIcon from '@mui/icons-material/Search'
 import './Banner2.css';
 import { Link } from 'react-router-dom';
 
-
-
 export function Banner2() {
   const { data, setData, crearFichaJugador } = useContext(PlayersContext);
   const [genero, setGenero] = useState('')
@@ -25,7 +23,6 @@ export function Banner2() {
     Posición: '',
     PieBueno: '',
     Club: '',
-    // Avatar: null,
   });
 
   const handleGuardar = () => {
@@ -53,7 +50,6 @@ export function Banner2() {
       console.log('Faltan datos requeridos para crear la ficha de jugador.');
     }
   };
-
 
   const [filterText, setFilterText] = useState('');
 
@@ -247,7 +243,6 @@ export function Banner2() {
         </div>
       </Modal>
 
-
       {/* MODAL NUEVO INFORME */}
       <Modal
         open={reportModalOpen}
@@ -258,7 +253,6 @@ export function Banner2() {
           sx={{
             margin: "2rem auto",
             width: "40%",
-            // border: "1px solid#c7f55c",
             borderRadius: "5px",
             maxHeight: "400px",
             overflowY: "auto",
@@ -280,7 +274,6 @@ export function Banner2() {
               fullWidth
               sx={{
                 margin: "10px 20px 10px 18px",
-
                 width: "95%",
                 borderRadius: "50px", // Ajusta este valor para cambiar la forma ovalada
                 backgroundColor: "#f5f5f5", // Color de fondo de la barra de búsqueda
@@ -304,7 +297,6 @@ export function Banner2() {
                 .map((player) => (
                   <Box key={player.jugador.PlayerId} sx={{ paddingBottom: "2rem" }}>
 
-
                     <Box   /* BARRA VERDE*/
                       sx={{
                         borderBottom: "1px solid #c7f55c",
@@ -314,7 +306,6 @@ export function Banner2() {
                     >
                     </Box>
 
-
                     {/* JUGADOR */}
                     <Box
                       sx={{
@@ -323,7 +314,6 @@ export function Banner2() {
                         justifyContent: "space-around",
                         padding: "1rem 0",
                       }}>
-
 
                       <label className="container">
                         <input type="checkbox" />
@@ -397,10 +387,3 @@ export function Banner2() {
     </div>
   );
 }
-
-
-
-
-
-
-

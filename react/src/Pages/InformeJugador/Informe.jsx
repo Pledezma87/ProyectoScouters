@@ -111,32 +111,32 @@ export function InformeJugador() {
     const promedioHabilidadesPrincipales = calcularPromedioHabilidades(skillsPrincipales);
     const promedioHabilidadesTacticas = calcularPromedioHabilidades(skillsTacticas);
     const promedioHabilidadesFisicas = calcularPromedioHabilidades(skillsFisicas);
-    
+
     const handleCombinedSubmit = () => {
         handleSubmitInforme();
         handleSubmitInform();
-      };
-    const navigate = useNavigate ()
+    };
+    const navigate = useNavigate()
     function handleSubmitInform() {
         // Aquí va la lógica para crear el informe
         // Por ejemplo, podrías hacer una llamada a la API para guardar los datos del informe
-    
+
         // Una vez que el informe se haya creado correctamente, muestra la alerta SweetAlert
         Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Informe creado con éxito",
-          text: "El informe se ha creado exitosamente.",
-          showConfirmButton: false,
-          timer: 4500,
-          toast: true,
+            position: "top-end",
+            icon: "success",
+            title: "Informe creado con éxito",
+            text: "El informe se ha creado exitosamente.",
+            showConfirmButton: false,
+            timer: 4500,
+            toast: true,
         });
-    
+
         // Redirige al usuario a la página de inicio de sesión después de 5 segundos
         setTimeout(() => {
-          navigate("/InterfazInformes");
+            navigate("/InterfazInformes");
         }, 5000);
-      }
+    }
 
     // Buscar el jugador específico por ID en la lista de jugadores
     if (!Array.isArray(data) || data.length === 0) {
@@ -146,6 +146,48 @@ export function InformeJugador() {
     console.log("esto es jugador", jugador)
     console.log("esto es la data", data)
 
+    const handleCombinedCancelar = () => {
+        // Reset skillsPrincipales to initial state
+        setSkillsPrincipales({
+            ControlDelBalon: 0,
+            Disparo: 0,
+            Cabeza: 0,
+            Asociacion: 0,
+            PieDerecho: 0,
+            PieIzquierdo: 0,
+            PasesLargos: 0,
+            Dribling: 0,
+            Reflejos: 0,
+            Centros: 0,
+        });
+
+        // Reset skillsTacticas to initial state
+        setSkillsTacticas({
+            Anticipacion: 0,
+            Colocacion: 0,
+            Concentracion: 0,
+            Contundencia: 0,
+            Desdoble: 0,
+            Desmarque: 0,
+            Posicionamientos: 0,
+            VisionDeJuego: 0,
+        });
+
+        // Reset skillsFisicas to initial state
+        setSkillsFisicas({
+            Agilidad: 0,
+            Flexibilidad: 0,
+            Fuerza: 0,
+            Potencia: 0,
+            Resistencia: 0,
+            Salto: 0,
+            Velocidad: 0,
+        });
+
+        // Clear the textarea (notasFinales)
+        setNotasFinales('');
+    };
+    
     return (
         <div className="informe-container-jugador">
             <Link to="/" className="header_Informe">
@@ -220,20 +262,20 @@ export function InformeJugador() {
                 </div>
                 {/* DATOS del partido */}
                 <div className="descripcion-partido">
-                    <div className="muestra_club">                    
+                    <div className="muestra_club">
                         <p>{jugador.jugador.Club}</p>
                     </div>
 
-                    <div className="separador"/>
+                    <div className="separador" />
 
                     <div className="muestra_promedio">
                         <p>Promedio Evaluacion, Rating</p>
-                    </div>        
+                    </div>
                     <div className="promedio_rating">
                         <p style={{ color: "lightgreen" }}>{jugador.jugador.Rating}</p>
                     </div>
 
-                    <div className="separador"/>
+                    <div className="separador" />
 
                     <div className="informe-fecha">
                         <p>Fecha</p>
@@ -320,13 +362,16 @@ export function InformeJugador() {
                             <textarea
                                 placeholder="Escribe aqui tus anotaciones..."
                                 rows="6"
-                                cols="80"
+                                cols="93"
                                 value={notasFinales}
                                 onChange={handleNotasFinalesChange}>
                             </textarea>
                         </div>
-                        {/* Botón para enviar el informe completo */}
-                        <button className='button-informecompleto' onClick={handleCombinedSubmit}>Enviar Informe Completo</button>
+                        <div className='button_enviarinforme'>
+                            {/* Botón para enviar el informe completo */}
+                            <button className='button-informecompleto' onClick={handleCombinedSubmit}>Enviar Informe Completo</button>
+                            <button className='button-informecompleto' onClick={handleCombinedCancelar}>Cancelar</button>
+                        </div>
                     </div>
                 )}
             </div>

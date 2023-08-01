@@ -252,17 +252,25 @@
 
 .skill p {
   font-size: 1.15em;
-
 }
 
 .anotaciones-container {
-  padding-top: 10px;
+  padding: 10px;
+}
+
+.button_enviarinforme {
+  display: flex;
+  font-family: "Oswald", sans-serif;
+  justify-content: space-around;
+  background-color: #36404c90;
+  align-items: center;
+  padding: 10px 10px;
 }
 
 .button-informecompleto {
-  display: flex;
   font-family: "Oswald", sans-serif;
-  height: 50px;
+  height: 60px;
+  width: 160px;
   padding: 10px;
   align-items: center;
   justify-content: center;

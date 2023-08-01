@@ -43,7 +43,7 @@ export function Banner() {
       playerData.Nacionalidad &&
       playerData.Posición &&
       playerData.PieBueno &&
-      playerData.Club 
+      playerData.Club
       // playerData.Avatar
     ) {
       // Llamar a la función del Context para crear la ficha de jugador
@@ -279,28 +279,6 @@ export function Banner() {
             boxShadow: "5px 0 0 0 #c7f55c"
           }}
         >
-          {/* Contenido del modal de nuevo informe */}
-        </Box>
-      </Modal>
-
-      {/* MODAL NUEVO INFORME */}
-      <Modal
-        open={reportModalOpen}
-        onClose={handleReportModalClose}
-        className="banner__modal"
-      >
-        <Box
-          sx={{
-            margin: "2rem auto",
-            width: "40%",
-            // border: "1px solid#c7f55c",
-            borderRadius: "5px",
-            maxHeight: "400px",
-            overflowY: "auto",
-            background: "#ffffff",
-            boxShadow: "5px 0 0 0 #c7f55c"
-          }}
-        >
           <Typography variant="h4" component="h1" gutterBottom fontFamily="Oswald" textTransform="uppercase" fontWeight="500" textAlign="center">
             Selecciona el jugador
           </Typography>
@@ -315,7 +293,6 @@ export function Banner() {
               fullWidth
               sx={{
                 margin: "10px 20px 10px 18px",
-
                 width: "95%",
                 borderRadius: "50px", // Ajusta este valor para cambiar la forma ovalada
                 backgroundColor: "#f5f5f5", // Color de fondo de la barra de búsqueda
@@ -350,7 +327,6 @@ export function Banner() {
                     >
                     </Box>
 
-
                     {/* JUGADOR */}
                     <Box
                       sx={{
@@ -360,7 +336,6 @@ export function Banner() {
                         padding: "1rem 0",
                       }}>
 
-
                       <label className="container">
                         <input type="checkbox" />
                         <div className="checkmark"></div>
@@ -368,7 +343,9 @@ export function Banner() {
 
                       <Box>
                         <Typography variant="h6" component="div">
-                          <img className="banner2-foto-jugador" src={url + player.jugador.Avatar} alt="Foto" />
+                          <Link key={player.jugador._id} to={`/Informe/${player.jugador._id}`}>
+                            <img className="banner2-foto-jugador" src={url + player.jugador.Avatar} alt="Foto" />
+                          </Link>
                         </Typography>
                       </Box>
 
@@ -398,12 +375,10 @@ export function Banner() {
                           </g>
                         </svg>
                       </label>
-
                     </Box>
                     {/*ESPACIO 2 JUGADOR  */}
                   </Box>
                 ))
-
             ) : (
               <Typography sx={{ display: "flex", justifyContent: "center" }} variant="h6">No hay fichas de jugadores creadas.</Typography>
             )}
@@ -431,11 +406,3 @@ export function Banner() {
     </div>
   );
 }
-
-
-
-
-
-
-
-

@@ -43,8 +43,8 @@ export function Context({ children }) {
     getPlayersData()
   }, []);
 
-  console.log(data); // Verificar el estado de data
-  console.log(informsData); // Verificar el estado de informsData
+  // console.log(data); // Verificar el estado de data
+  // console.log(informsData); // Verificar el estado de informsData
 
   async function getPlayersData() {
     await axios
@@ -58,8 +58,8 @@ export function Context({ children }) {
           setData(playersRes.data);
           setInformsData(informsRes.data);
           setPlayerMetricsData(playerMetricsRes.data);
-          console.log(playersRes.data); // Datos recibidos de la API para players
-          console.log(informsRes.data); // Datos recibidos de la API para informs
+          // console.log(playersRes.data); // Datos recibidos de la API para players
+          // console.log(informsRes.data); // Datos recibidos de la API para informs
         })
       )
       .catch((error) => console.error(error));
@@ -88,8 +88,8 @@ export function Context({ children }) {
        await axios.spread((playersRes, informsRes) => {
           setData(playersRes.data);
           setInformsData(informsRes.data);
-          console.log(playersRes.data); // Datos recibidos de la API para players
-          console.log(informsRes.data); // Datos recibidos de la API para informs
+          // console.log(playersRes.data); // Datos recibidos de la API para players
+          // console.log(informsRes.data); // Datos recibidos de la API para informs
         })
       )
       .catch((error) => console.error(error));

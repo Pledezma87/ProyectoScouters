@@ -50,7 +50,7 @@ const informSchema = new Schema(
       }
     ],
     MediaInforme: { type: Number },
-    Texto: { type: String, required: true },
+    Texto: { type: String },
     Created_At: { type: Date, default: Date.now },
  
   },
